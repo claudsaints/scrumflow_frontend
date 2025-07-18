@@ -1,1 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary: #103C55;
+  --secondary: #3C9FA7;
+  --bg-default: #ffffff;
+  --text-main: #1a1a1a;
+  --text-muted: #6c757d;
+  --text-pale: #f4f4f4;
+  --radius: 8px;
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: var(--bg-default);
+  color: var(--text-main);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+p {
+  margin-bottom: 1em;
+  color: var(--text-main);
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button.primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+button.secondary {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+  flex: 1;
+  
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 100vw;
+}

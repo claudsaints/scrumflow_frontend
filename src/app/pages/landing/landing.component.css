@@ -1,0 +1,101 @@
+
+
+button {
+    margin-top: 1rem;
+    height: 100%;
+    width: 40%;
+    
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+}
+
+
+ .container, .content, .text-content{
+     padding: 0.7rem 5rem;
+ }
+
+.text-content {
+    align-self: first baseline;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 1rem;
+}
+
+.img-fluid{
+    display: block;
+    max-width: 100%;
+    max-height: 100vh;
+    height: auto;
+    position: absolute;
+    bottom: 0.8rem;
+    top: auto;
+}
+
+@media screen and (max-width: 768px) {
+       .container, .content, .text-content {
+        max-width: 1400px;
+        width: 100%;
+        align-items: center;
+        
+    }
+    .img-fluid {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        display: block;
+    }
+
+    button {
+        width: 50%;
+        margin-top: 1rem;
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    h1, h2 {
+        text-align: center;
+    }
+}
+
+@media screen and (mmin-width: 1854px), screen and (min-width: 1500px) {
+    .container, .content, .text-content {
+        max-width: 1400px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 2rem 5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    .img-fluid {
+        max-width: 90%;
+        max-height: 90vh;
+        position: static;
+        bottom: 4rem;
+    }
+    button {
+        font-size: 1.3rem;
+        padding: 1em 2em;
+        width: 30%;
+        margin-top: 2rem;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    p {
+        font-size: 1.2rem;
+    }
+}
