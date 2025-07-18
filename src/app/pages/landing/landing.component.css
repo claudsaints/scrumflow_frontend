@@ -1,13 +1,11 @@
-
-
 button {
     margin-top: 1rem;
     height: 100%;
     width: 40%;
-    
+
 }
 
-.content{
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,9 +14,11 @@ button {
 }
 
 
- .container, .content, .text-content{
-     padding: 0.7rem 5rem;
- }
+.container,
+.content,
+.text-content {
+    padding: 0.7rem 5rem;
+}
 
 .text-content {
     align-self: first baseline;
@@ -27,7 +27,7 @@ button {
     padding: 1rem;
 }
 
-.img-fluid{
+.img-fluid {
     display: block;
     max-width: 100%;
     max-height: 100vh;
@@ -38,12 +38,18 @@ button {
 }
 
 @media screen and (max-width: 768px) {
-       .container, .content, .text-content {
+    .container,
+    .content,
+    .text-content {
         max-width: 1400px;
         width: 100%;
         align-items: center;
-        
+        padding: 0rem 0rem;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+
     }
+
     .img-fluid {
         position: relative;
         bottom: 0;
@@ -57,19 +63,37 @@ button {
         width: 50%;
         margin-top: 1rem;
     }
-    div{
+
+    div {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
-    h1, h2 {
-        text-align: center;
+
+    h1,
+    h2 {
+        text-align: justify;
     }
 }
 
-@media screen and (mmin-width: 1854px), screen and (min-width: 1500px) {
-    .container, .content, .text-content {
+
+@media screen and (max-width: 768px), screen and (max-height: 600px) {
+    .img-fluid {
+        max-width: 90%;
+        max-height: 90vh;
+        position: static;
+        bottom: 4rem;
+    }
+}
+
+
+@media screen and (min-width: 1854px),
+screen and (min-width: 1500px){
+
+    .container,
+    .content,
+    .text-content {
         max-width: 1400px;
         width: 100%;
         margin: 0 auto;
@@ -77,24 +101,30 @@ button {
         display: flex;
         justify-content: space-between;
     }
+
+    
     .img-fluid {
         max-width: 90%;
         max-height: 90vh;
         position: static;
         bottom: 4rem;
     }
+
     button {
         font-size: 1.3rem;
         padding: 1em 2em;
         width: 30%;
         margin-top: 2rem;
     }
+
     h1 {
         font-size: 3rem;
     }
+
     h2 {
         font-size: 2rem;
     }
+
     p {
         font-size: 1.2rem;
     }
