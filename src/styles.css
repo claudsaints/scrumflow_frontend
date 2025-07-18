@@ -6,7 +6,7 @@
   --text-main: #1a1a1a;
   --text-muted: #6c757d;
   --text-pale: #f4f4f4;
-  --radius: 8px;
+  --radius: 5px;
   --transition: 0.3s ease;
 }
 
@@ -59,22 +59,29 @@ a:hover {
   text-decoration: underline;
 }
 
-button {
+.button {
   font-family: inherit;
   font-size: 1rem;
-  padding: 0.6em 1.2em;
+  padding: 0.6em;
   border: none;
+  text-align: center;
   border-radius: var(--radius);
-  cursor: pointer;
+  border: none;
+  font-weight: bold;
   transition: var(--transition);
 }
 
-button.primary {
+.button.primary {
   background-color: var(--primary);
   color: white;
 }
 
-button.secondary {
+.button.primary:hover {
+  background-color: #0b2c3f;
+  cursor: pointer;
+}
+
+.button.secondary {
   background-color: var(--secondary);
   color: white;
 }
@@ -89,4 +96,67 @@ button.secondary {
 .fullscreen {
   height: 100vh;
   width: 100vw;
+}
+
+/* Auth styles */
+form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+}
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  min-height: 350px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.auth-container h1, .auth-container h2 {
+  margin-bottom: 20px;
+  color: #103C55; 
+  align-self: baseline;
+  font-size: 18px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.auth-container input {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 15px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 4px;
+}
+
+.auth-container .p-button {
+  width: 100%;
+ 
+}
+
+
+@media screen and (max-width: 768px), screen and (max-height: 600px) {
+    .auth-container {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .auth-container h2 {
+        font-size: 16px;
+    }
+
+    .auth-container input, .auth-container button {
+        font-size: 14px;
+    }
 }

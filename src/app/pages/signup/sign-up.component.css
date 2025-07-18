@@ -1,0 +1,15 @@
+.message-error {
+    display: block;
+    position: relative;
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 2px;
+    bottom: 8px;
+}
+
+.p-field{
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    justify-content: space-around;
+}

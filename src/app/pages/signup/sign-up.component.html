@@ -1,1 +1,16 @@
-<p>sign-up works!</p>
+<div class="auth-container">
+  <h2>Cadastro</h2>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div class="p-field">
+      <input maxlength="200" type="text" formControlName="name" placeholder="Nome" required>
+    </div>
+    <div class="p-field">
+      <input minlength="5" maxlength="255" type="text" formControlName="email" placeholder="E-mail" required>
+    </div>
+    <div class="p-field">
+      <input minlength="6" maxlength="12" type="password" formControlName="password" placeholder="Senha" required>
+    </div>
+    <p-button type="submit" label="Sign Up" class="button primary"></p-button>
+  </form>
+  <a href="/signin">realizar Login</a>
+</div>
