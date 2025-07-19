@@ -29,7 +29,55 @@ export class HomeComponent {
       "name": "claudio",
       "email": "claudio@gmail.com"
     }
-  }
+  },
+   {
+    "id": 2,
+    "title": "scrumflow",
+    "description": "a scrum + kanban app",
+    "create_at": "2025-07-19T15:24:26.457435Z",
+    "owner": {
+      "name": "claudio",
+      "email": "claudio@gmail.com"
+    }
+  },
+   {
+    "id": 2,
+    "title": "scrumflow",
+    "description": "a scrum + kanban app",
+    "create_at": "2025-07-19T15:24:26.457435Z",
+    "owner": {
+      "name": "claudio",
+      "email": "claudio@gmail.com"
+    }
+  },
+   {
+    "id": 1,
+    "title": "virtual_shop",
+    "description": "virtual website to buy things",
+    "create_at": "2025-07-19T15:24:26.457435Z",
+    "owner": {
+      "name": "claudio",
+      "email": "claudio@gmail.com"
+    }
+  }, {
+    "id": 1,
+    "title": "virtual_shop",
+    "description": "virtual website to buy things",
+    "create_at": "2025-07-19T15:24:26.457435Z",
+    "owner": {
+      "name": "claudio",
+      "email": "claudio@gmail.com"
+    }
+  }, {
+    "id": 1,
+    "title": "virtual_shop",
+    "description": "virtual website to buy things",
+    "create_at": "2025-07-19T15:24:26.457435Z",
+    "owner": {
+      "name": "claudio",
+      "email": "claudio@gmail.com"
+    }
+  },
 ]
 
 

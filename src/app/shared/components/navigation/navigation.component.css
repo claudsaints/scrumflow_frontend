@@ -1,20 +1,32 @@
-div {
+.sidebar {
     background-color: var(--gray-content);
     display: flex;
-    flex: 1;
+    flex-direction: column;
     position: relative;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    left: 0;
     width: 5rem;
-    left: 1px;
-    bottom: 1px;
-
-
+    height: 100%;          
+    min-height: 100vh;    
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 1rem;
+    z-index: 10;
 }
-::ng-deep .p-avatar {
-    background-color: #2600ff; 
-    color: #ffffff;
-    width: 34px;
+
+
+
+.avatar {
+    background-color: var(--secondary);
     height: 34px;
+    width: 34px;
+    border-radius: 50%;
+}
+
+
+
+
+@media (max-width: 1050px) {
+    .sidebar {
+        display: none;
+    }
 }

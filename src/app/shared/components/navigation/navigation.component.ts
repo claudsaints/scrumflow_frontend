@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
-
-
-import { AvatarModule } from 'primeng/avatar';
-import { AvatarGroupModule } from 'primeng/avatargroup'; 
+import { IconFieldModule } from 'primeng/iconfield';
 @Component({
   selector: 'app-navigation',
-  imports: [AvatarGroupModule,AvatarModule],
+  imports: [ IconFieldModule],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
-
+ 
 }
