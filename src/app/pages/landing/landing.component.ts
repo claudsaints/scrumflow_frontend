@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
-  imports: [ButtonComponent, Button, RouterModule],
+  imports: [ Button, RouterModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })

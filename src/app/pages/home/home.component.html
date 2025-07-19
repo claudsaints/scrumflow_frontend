@@ -1,1 +1,26 @@
-<p>home works!</p>
+<div class="app-container">
+  <app-navigation></app-navigation>
+  <div class="home-container">
+    <div class="section-header">
+      <h2>Hello</h2>
+
+      <div>
+        <p-button
+          class="button secondary"
+          label="Create a new Project"
+        ></p-button>
+      </div>
+    </div>
+
+    <div class="grid-projects">
+      @for(item of projects; track $index){
+      <div class="project-card">
+        <div>
+          <h3>{{item.title}}</h3>
+          <i></i>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
