@@ -1,0 +1,16 @@
+.default-card {
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .section-header {
+        padding-inline: 25px;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 18rem;
+    }
+}
