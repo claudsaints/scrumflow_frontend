@@ -26,12 +26,14 @@ body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   display: flex;
   flex-direction: column;
 }
+
 
 app-root {
   display: flex;
@@ -103,10 +105,13 @@ a:hover {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   padding: 1rem;
-  flex: 1;
-
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
 }
 
 .fullscreen {
@@ -147,7 +152,7 @@ form {
   text-transform: uppercase;
 }
 
-.auth-container input {
+.auth-container  input {
   display: block;
   width: 100%;
   padding: 0.6rem;
@@ -189,14 +194,18 @@ Projects && Home Screens
 
 .app-container {
   display: flex;
-  flex: 1;
   flex-direction: row;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
 }
 
 .home-container {
     display: flex;
-    flex: 1;
     flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
 }
 
 

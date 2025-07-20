@@ -1,16 +1,18 @@
 .list-container {
     display: flex;
-    height: auto;
     flex-direction: row;
-    width: 100%;
+    flex-wrap: nowrap;
+    background-color: yellow;
+    margin-inline: 4rem;
+    width: 87%;
+    min-height: 300px;
+    padding: 1rem;
     margin-top: 2rem;
-    overflow-x: hidden;
+    gap: 1rem;
+    overflow-x: auto;
     overflow-y: hidden;
-    white-space: nowrap;
-    box-sizing: border-box;
-    gap: 0.7rem;
-    padding-left: 80px;
-    scrollbar-width: none; 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .list-container::-webkit-scrollbar {
