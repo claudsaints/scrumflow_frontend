@@ -1,1 +1,26 @@
-<p>card works!</p>
+
+
+<div *ngIf="visible" class="custom-card-popup" [ngClass]="{'full-mobile': isMobile}">
+  <div class="popup-bg" (click)="closeDialog()"></div>
+  <div class="popup-content" [ngStyle]="popupStyle">
+    <button class="close-btn" (click)="closeDialog()" aria-label="Fechar">&#10005;</button>
+    <div class="popup-scroll">
+      <input [(ngModel)]="card.title" class="popup-title" placeholder="Título do card" />
+      <textarea [(ngModel)]="card.description" class="popup-desc" placeholder="Descrição..."></textarea>
+      <div class="popup-row">
+        <span>Início:</span>
+        <input pInputText type="date" [(ngModel)]="card.startDate" style="flex:1;" />
+        <span style="margin-left:8px;">Término:</span>
+        <input pInputText type="date" [(ngModel)]="card.endDate" style="flex:1;" />
+      </div>
+      <div class="popup-row">
+        <span>Cor:</span>
+        <input pColorPicker [(ngModel)]="card.color" [style.width.px]="32" [style.height.px]="32" />
+      </div>
+      <div class="popup-row" style="flex-direction:column;align-items:flex-start;">
+        <span>Poker Planning:</span>
+        <p-selectButton [options]="pokerOptions" [(ngModel)]="card.pokerValue" optionLabel="label" optionValue="value" [multiple]="false" style="width:100%;margin-top:8px;flex-wrap:wrap;"/>
+      </div>
+    </div>
+  </div>
+</div>
