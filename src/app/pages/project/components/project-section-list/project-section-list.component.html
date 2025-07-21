@@ -1,5 +1,6 @@
-<div class="list-container">
-  @for(item of lists; track $index){
-    <app-project-list-card [listData]="item" />
-  }
-</div>
+  <drag-scroll class="list-container">
+    @for(item of lists; track $index){
+      <app-project-list-card [listData]="item" />
+    }
+  </drag-scroll>
+

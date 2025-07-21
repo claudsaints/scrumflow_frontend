@@ -22,6 +22,7 @@
 .list-container:hover {
     overflow-x: auto;
     scrollbar-width: thin; 
+    cursor: grab;
 }
 .list-container:hover::-webkit-scrollbar {
     display: block;
@@ -29,4 +30,11 @@
     background: #eee;
 }
 
+@media (max-width: 768px) {
+    .list-container {
+        width: 100%;
+        margin-inline: 0;
+        padding: 0.5rem;
+    }
+}
 

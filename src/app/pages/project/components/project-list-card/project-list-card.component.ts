@@ -1,9 +1,11 @@
 import { Component, Input, input } from '@angular/core';
 import { Card, List } from '../../../../types';
+import { DragScrollComponent } from "ngx-drag-scroll";
+import { Button } from "primeng/button";
 
 @Component({
   selector: 'app-project-list-card',
-  imports: [],
+  imports: [DragScrollComponent, Button],
   templateUrl: './project-list-card.component.html',
   styleUrl: './project-list-card.component.css'
 })

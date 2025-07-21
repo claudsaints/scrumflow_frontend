@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Button } from "primeng/button";
 import { NavigationComponent } from "../../shared/components/navigation/navigation.component";
 import { ProjectHeaderComponent } from "./components/project-header/project-header.component";
 import { ProjectSectionHeaderComponent } from "./components/project-section-header/project-section-header.component";
@@ -7,7 +6,7 @@ import { ProjectSectionListComponent } from "./components/project-section-list/p
 
 @Component({
   selector: 'app-project',
-  imports: [Button, NavigationComponent, ProjectHeaderComponent, ProjectSectionHeaderComponent, ProjectSectionListComponent],
+  imports: [ NavigationComponent, ProjectHeaderComponent, ProjectSectionHeaderComponent, ProjectSectionListComponent],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })
