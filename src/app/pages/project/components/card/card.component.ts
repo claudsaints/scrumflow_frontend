@@ -21,14 +21,14 @@ export class CardComponent {
   isMobile = false;
   popupStyle: any = {};
   pokerOptions = [
-    { label: '1', value: 1 },
-    { label: '2', value: 2 },
-    { label: '3', value: 3 },
-    { label: '5', value: 5 },
-    { label: '8', value: 8 },
-    { label: '13', value: 13 },
-    { label: '21', value: 21 },
-    { label: '?', value: '?' }
+    { label: '1', value: 1, imgSrc: '/1_poker.png' },
+    { label: '2', value: 2, imgSrc: '/2_poker.png' },
+    { label: '3', value: 3 , imgSrc: '/3_poker.png'},
+    { label: '5', value: 5 , imgSrc: '/5_poker.png'},
+    { label: '8', value: 8 , imgSrc: '/8_poker.png'},
+    { label: '13', value: 13 , imgSrc: '/13_poker.png'},
+    { label: '21', value: 21, imgSrc: '/21_poker.png' },
+    { label: '?', value: '?', imgSrc: '/java_poker.png' }
   ];
 
   ngOnInit() {
@@ -40,5 +40,10 @@ export class CardComponent {
 
   closeDialog() {
     if (this.onClose) this.onClose();
+  }
+
+  saveCard() {
+    console.log('Card saved:', this.card);
+    this.closeDialog();
   }
 }
