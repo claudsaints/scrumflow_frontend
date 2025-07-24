@@ -1,20 +1,25 @@
 import { Component } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
-import { Button } from "primeng/button";
+import { Button, ButtonModule } from "primeng/button";
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MessageModule } from 'primeng/message'; 
 import { AuthService } from '../../services/auth.service';
 import {  Router } from '@angular/router';
+import { tree } from '@primeuix/themes/aura/treeselect';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LoadingSpinnerComponent } from "../../shared/components/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-sign-up',
-  imports: [InputTextModule, Button, ReactiveFormsModule, CommonModule, MessageModule],
+  imports: [InputTextModule, ButtonModule, ReactiveFormsModule, CommonModule, MessageModule, ProgressSpinnerModule, LoadingSpinnerComponent],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
   signUpForm: FormGroup<any>;
+
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder, private auth:AuthService, private router: Router) {
     this.signUpForm = this.fb.group({
@@ -26,8 +31,16 @@ export class SignUpComponent {
 
   async onSubmit() {
     if (this.signUpForm.valid) {
+      this.register();
+    } else {
+      this.signUpForm.markAllAsTouched();
+    }
+  }
 
+  async register(){
       const {name,email,password} = this.signUpForm.value;
+
+      this.loading = true;
 
       this.auth.signUp(name,email,password).subscribe({
         next: () => {
@@ -36,12 +49,10 @@ export class SignUpComponent {
         },
         error: err => {
           console.log(`Error SignUP: ${err}`);
-
+        },
+        complete: () => {
+          this.loading = false;
         }
       })
-
-    } else {
-      this.signUpForm.markAllAsTouched();
-    }
   }
 }
