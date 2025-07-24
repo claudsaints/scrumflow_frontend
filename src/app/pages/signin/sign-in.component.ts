@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { Button } from "primeng/button";
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-sign-in',
   imports: [InputTextModule, Button],
@@ -8,5 +9,8 @@ import { Button } from "primeng/button";
   styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {
+  
+  constructor(){}
+
 
 }
