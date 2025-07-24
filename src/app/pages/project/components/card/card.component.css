@@ -1,3 +1,12 @@
+/* Utilitários para botão full width e altura fixa */
+.width-full {
+  width: 100% !important;
+}
+.height-60px {
+  height: 60px !important;
+  min-height: 60px !important;
+  font-size: 1.1rem;
+}
 /* Grid de poker planning */
 .poker-grid {
   display: grid;

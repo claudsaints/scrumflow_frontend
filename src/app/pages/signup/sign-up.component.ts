@@ -9,19 +9,21 @@ import {  Router } from '@angular/router';
 import { tree } from '@primeuix/themes/aura/treeselect';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoadingSpinnerComponent } from "../../shared/components/loading-spinner/loading-spinner.component";
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [InputTextModule, ButtonModule, ReactiveFormsModule, CommonModule, MessageModule, ProgressSpinnerModule, LoadingSpinnerComponent],
+  imports: [InputTextModule, ButtonModule, ReactiveFormsModule, CommonModule, MessageModule, ProgressSpinnerModule, LoadingSpinnerComponent,ToastModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
-export class SignUpComponent {
+export class SignUpComponent  {
   signUpForm: FormGroup<any>;
 
   loading: boolean = false;
 
-  constructor(private fb: FormBuilder, private auth:AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private auth:AuthService, private router: Router,private messageService: MessageService) {
     this.signUpForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -33,8 +35,14 @@ export class SignUpComponent {
     if (this.signUpForm.valid) {
       this.register();
     } else {
+      this.showToast();
       this.signUpForm.markAllAsTouched();
+
     }
+  }
+
+  showToast() { 
+    this.messageService.add({severity: 'success', summary:  'Heading', detail: 'More details....' });
   }
 
   async register(){

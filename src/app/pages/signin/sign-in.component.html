@@ -4,7 +4,10 @@
   <form>
     <input type="text" placeholder="E-mail" autocomplete="email">
     <input type="password" placeholder="Senha" autocomplete="current-password">
-    <p-button type="submit" label="Entrar" class="button primary"/>
+    <button type="submit" class="button primary custom-loading-button">
+        <span *ngIf="!loading" > Sign In </span> 
+        <app-loading-spinner *ngIf="loading" size="20" />
+    </button>
   </form>
     <a href="/signup">realizar Cadastro</a>
 </div>

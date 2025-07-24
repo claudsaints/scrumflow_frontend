@@ -7,9 +7,9 @@
             </div>
             <div class="section-header-actions">
                 <p-dropdown [(ngModel)]="selectedSection" [options]="sections"  />
-                <p-button icon="pi pi-chart-bar" label="Graph"  class="button secondary"/>
+                <button pButton type="button" severity="secondary" icon="pi pi-chart-bar" label="Graph"></button>
             </div>
         </div>
 
-        <p-button icon="pi pi-plus" label="Add another list" class="button primary width-default"/>
+        <button pButton type="button" severity="primary" icon="pi pi-plus" label="Add another list" class="width-default"></button>
     </div>
