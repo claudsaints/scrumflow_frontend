@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { Button } from "primeng/button";
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/Auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from "../../shared/components/loading-spinner/loading-spinner.component";
 @Component({
