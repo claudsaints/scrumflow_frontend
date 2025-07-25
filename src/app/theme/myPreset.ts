@@ -86,6 +86,17 @@ const MyPreset = definePreset(Aura, {
                     color: #fff;
                 }
             `
+        },
+        password: {
+            css: () => `
+                .p-password{
+                    display: block;
+                }
+                    .p-password-mask-icon :hover{
+                        cursor: pointer;
+                    }
+            `
+
         }
     }
 });

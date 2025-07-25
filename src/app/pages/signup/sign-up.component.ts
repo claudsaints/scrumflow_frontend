@@ -15,6 +15,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoadingSpinnerComponent } from '../../shared/components/loading-spinner/loading-spinner.component';
 import { ToastModule } from 'primeng/toast';
 import { FormHelperService } from '../../services/Form/form-helper.service';
+import { Password, PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-sign-up',
@@ -27,6 +28,7 @@ import { FormHelperService } from '../../services/Form/form-helper.service';
     ProgressSpinnerModule,
     LoadingSpinnerComponent,
     ToastModule,
+    PasswordModule
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css',

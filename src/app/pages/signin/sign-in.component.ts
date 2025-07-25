@@ -7,9 +7,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, TitleStrategy } from '@angular/router';
 import { FormHelperService } from '../../services/Form/form-helper.service';
 import { Toast } from "primeng/toast";
+import {PasswordModule} from "primeng/password"
 @Component({
   selector: 'app-sign-in',
-  imports: [InputTextModule, CommonModule, LoadingSpinnerComponent, Toast,ReactiveFormsModule],
+  imports: [InputTextModule, CommonModule, LoadingSpinnerComponent, Toast,ReactiveFormsModule,PasswordModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css',
 })

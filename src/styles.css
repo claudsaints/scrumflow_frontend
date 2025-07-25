@@ -163,7 +163,13 @@ form {
   border-radius: 4px;
 }
 
+.auth-container input::placeholder{
+  font-size: medium;
+  color: var(--primary);
+}
+
 .auth-container .p-button {
+  
   width: 100%;
 
 }
