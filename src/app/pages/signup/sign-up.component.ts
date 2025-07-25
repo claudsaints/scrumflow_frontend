@@ -32,8 +32,8 @@ import { FormHelperService } from '../../services/Form/form-helper.service';
   styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
-  signUpForm: FormGroup<any>;
   loading: boolean = false;
+  signUpForm: FormGroup<any>;
 
   constructor(
     private fb: FormBuilder,
@@ -84,11 +84,11 @@ export class SignUpComponent {
 
     this.auth.signUp(name, email, password).subscribe({
       next: () => {
-        console.log('Sucesso no login');
+        console.log('SignUp has Success');
         this.router.navigate(['/signin'], { queryParams: { email, password } });
       },
       error: (err) => {
-        console.log(`Error SignUP: ${err}`);
+        console.error(`Error SignUP: ${err}`);
       },
       complete: () => {
         this.loading = false;

@@ -1,9 +1,9 @@
 
 <div class="auth-container">
   <h2>Login</h2>
-  <form>
-    <input type="text" placeholder="E-mail" autocomplete="email">
-    <input type="password" placeholder="Senha" autocomplete="current-password">
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <input formControlName="email" type="email" minlength="5" maxlength="255" placeholder="E-mail" autocomplete="email" required>
+    <input formControlName="password" type="password" minlength="6" maxlength="12" placeholder="Senha" autocomplete="current-password" required>
     <button type="submit" class="button primary custom-loading-button">
         <span *ngIf="!loading" > Sign In </span> 
         <app-loading-spinner *ngIf="loading" size="20" />
@@ -11,3 +11,4 @@
   </form>
     <a href="/signup">Don’t have an account? Sign up</a>
 </div>
+<p-toast/>
