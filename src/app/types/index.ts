@@ -1,21 +1,21 @@
 
-export type User = {
+ type User = {
   name: string;
   email: string;
 };
 
-export type Member = {
+ type Member = {
   role: 'ADMIN' | 'MEMBER' | 'OWNER';
   user: User;
   join_at: string;
 };
 
-export type Card = {
+ type Card = {
   title: string;
   description: string | null;
 };
 
-export type List = {
+ type List = {
   id: number;
   title: string;
   position: number;
@@ -23,10 +23,10 @@ export type List = {
   cardList: Card[];
 };
 
-export type Label = any; // Defina conforme necessário
-export type Sprint = any; // Defina conforme necessário
+ type Label = any; 
+ type Sprint = any; 
 
-export type Project = {
+ type Project = {
   id: number;
   title: string;
   description: string;
@@ -37,3 +37,27 @@ export type Project = {
   labels: Label[];
   sprints: Sprint[];
 };
+
+type ProjectDTO  = {
+  id: number;
+  title: string;
+  description: string;
+  backgroundImage: string;
+  create_at: string;
+  owner: {
+      name: string;
+      email: string;
+  }
+}
+
+
+
+export type {
+  User,
+  Member,
+  Project,
+  List,
+  Label,
+  Card,
+  ProjectDTO
+}

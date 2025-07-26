@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationComponent } from "../../shared/components/navigation/navigation.component";
 import { Button } from "primeng/button";
+import { ProjectService } from '../../services/Project/project.service';
+import { ProjectDTO } from '../../types';
 
 @Component({
   selector: 'app-home',
@@ -8,77 +10,17 @@ import { Button } from "primeng/button";
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  projects = [
-  {
-    "id": 1,
-    "title": "virtual_shop",
-    "description": "virtual website to buy things",
-    "create_at": "2025-07-19T15:24:26.457435Z",
-    "owner": {
-      "name": "claudio",
-      "email": "claudio@gmail.com"
-    }
-  },
-  {
-    "id": 2,
-    "title": "scrumflow",
-    "description": "a scrum + kanban app",
-    "create_at": "2025-07-19T15:24:26.457435Z",
-    "owner": {
-      "name": "claudio",
-      "email": "claudio@gmail.com"
-    }
-  },
-   {
-    "id": 2,
-    "title": "scrumflow",
-    "description": "a scrum + kanban app",
-    "create_at": "2025-07-19T15:24:26.457435Z",
-    "owner": {
-      "name": "claudio",
-      "email": "claudio@gmail.com"
-    }
-  },
-   {
-    "id": 2,
-    "title": "scrumflow",
-    "description": "a scrum + kanban app",
-    "create_at": "2025-07-19T15:24:26.457435Z",
-    "owner": {
-      "name": "claudio",
-      "email": "claudio@gmail.com"
-    }
-  },
-   {
-    "id": 1,
-    "title": "virtual_shop",
-    "description": "virtual website to buy things",
-    "create_at": "2025-07-19T15:24:26.457435Z",
-    "owner": {
-      "name": "claudio",
-      "email": "claudio@gmail.com"
-    }
-  }, {
-    "id": 1,
-    "title": "virtual_shop",
-    "description": "virtual website to buy things",
-    "create_at": "2025-07-19T15:24:26.457435Z",
-    "owner": {
-      "name": "claudio",
-      "email": "claudio@gmail.com"
-    }
-  }, {
-    "id": 1,
-    "title": "virtual_shop",
-    "description": "virtual website to buy things",
-    "create_at": "2025-07-19T15:24:26.457435Z",
-    "owner": {
-      "name": "claudio",
-      "email": "claudio@gmail.com"
-    }
-  },
-]
+export class HomeComponent implements OnInit{
+  projects: ProjectDTO [] = [];
 
+  constructor(private projectService: ProjectService ){}
 
+  ngOnInit(): void {
+    this.getProjects();
+  }
+
+  getProjects(): void {
+    this.projectService.findUserProjects().subscribe( p => this.projects = p);
+
+  }
 }
