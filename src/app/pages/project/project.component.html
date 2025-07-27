@@ -2,7 +2,7 @@
   <app-navigation></app-navigation>
   <div class="home-container">
     <app-project-header/>
-    <app-project-section-header [sections]="project.sections"/>
+    <app-project-section-header (changeSection)="handleSelectSectionChanges($event)" [sections]="project.sections"/>
     <app-project-section-list [lists]="section.lists"/>
   </div>
 </div>

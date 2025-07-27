@@ -60,13 +60,15 @@ export class ProjectComponent implements OnInit {
     this.projectService.findProjectById(id).subscribe((p) => {
       this.project = p;
       this.selectedSectionId = p.sections[0].id;
-      this.setSection();
+      this.sectionService
+      .findSectionById(this.selectedSectionId)
+      .subscribe((s) => (this.section = s));
     });
   }
 
-  setSection(): void {
+  handleSelectSectionChanges(id: number) {
     this.sectionService
-      .findSectionById(this.selectedSectionId)
+      .findSectionById(id)
       .subscribe((s) => (this.section = s));
   }
 }

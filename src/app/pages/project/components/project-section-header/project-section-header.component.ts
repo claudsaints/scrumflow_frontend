@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { ButtonModule } from 'primeng/button';
@@ -16,7 +16,9 @@ export class ProjectSectionHeaderComponent {
 
   selectedSection: SimpleSection = this.sections[0];
 
-  onSprintChange(event: any) {
-    console.log('Selected Sprint:', event.value);
+  @Output() changeSection: EventEmitter<number> = new EventEmitter<number>();
+
+  selectChange() {
+     this.changeSection.emit(this.selectedSection.id);
   }
 }
