@@ -22,8 +22,8 @@ export class ListService extends HttpModelService {
     return this.http.put<List>(`${this.serverUrl}sectionId=${sectionId}&listId=${listId}&newPos=${newPosition}`, {});
   }
 
-  delete(listId: number): void{
-    this.http.delete(`${this.serverUrl}/${listId}`);
+  delete(listId: number): Observable<any>{
+    return this.http.delete(`${this.serverUrl}/${listId}`);
   }
 
 

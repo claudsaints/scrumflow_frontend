@@ -1,7 +1,8 @@
 <div class="default-card project-list">
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
         <h3 style="flex:1; margin:0;">{{listData.title}}</h3>
-        <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-text p-button-rounded p-button-sm" aria-label="Mais opções"></button>
+        <p-menu #menu [model]="items" [popup]="true"  c/>
+        <p-button (click)="menu.toggle($event)" icon="pi pi-ellipsis-v" />
     </div>
 
     <div class="card-list">
@@ -14,5 +15,5 @@
 
     <app-card [card]="selectedCard" [visible]="cardDialogVisible" [onClose]="closeCardDialog.bind(this)"></app-card>
 
-    <p-button pRipple type="button" icon="pi pi-plus" label="Adicionar card" class="p-button-text p-button-sm"/>
+    <p-button pRipple type="button" variant="text" icon="pi pi-plus" label="Adicionar card" class="p-button-text p-button-sm"/>
 </div>

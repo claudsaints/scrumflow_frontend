@@ -61,9 +61,6 @@ export class ProjectComponent implements OnInit {
     this.projectService.findProjectById(id).subscribe((p) => {
       this.project = p;
       this.selectedSectionId = p.sections[0].id;
-      this.sectionService
-      .findSectionById(this.selectedSectionId)
-      .subscribe((s) => (this.section = s));
     });
   }
 
@@ -75,8 +72,10 @@ export class ProjectComponent implements OnInit {
 
   handlerAddNewList(sectionId: number){
     this.ListSevice.create(sectionId, "NewList")
-    .subscribe(newList => {
-      this.section.lists.push(newList);
+    .subscribe({
+      next: (newList) => {
+         this.section.lists.push(newList);
+      }
     })
   }
 }

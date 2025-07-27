@@ -1,17 +1,17 @@
-
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card, List } from '../../../../types';
-import { DragScrollComponent } from "ngx-drag-scroll";
-import { Button } from "primeng/button";
+import { Button } from 'primeng/button';
+import { MenuItem } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
-
+import { MenuModule } from 'primeng/menu';
+import { ListService } from '../../../../services/List/list.service';
 @Component({
   selector: 'app-project-list-card',
-  imports: [ Button, DialogModule, CommonModule, CardComponent],
+  imports: [Button, DialogModule, CommonModule, CardComponent, MenuModule],
   templateUrl: './project-list-card.component.html',
-  styleUrl: './project-list-card.component.css'
+  styleUrl: './project-list-card.component.css',
 })
 export class ProjectListCardComponent {
   @Input() listData: List = {
@@ -19,11 +19,25 @@ export class ProjectListCardComponent {
     title: '',
     position: 0,
     cardList: [],
-    create_at: ''
+    create_at: '',
   };
+
+  @Output() deleteList: EventEmitter<number> = new EventEmitter<number>();
+
+  items: MenuItem[] = [
+    { id: 'edit_list', label: 'Edit', icon: 'pi pi-pen-to-square' },
+    {
+      id: 'delete_list',
+      label: 'Delete',
+      icon: 'pi pi-trash',
+      command: () => this.onDeleteList(),
+    },
+  ];
 
   cardDialogVisible = false;
   selectedCard: Card | null = null;
+
+  constructor(private listService: ListService) {}
 
   openCardDialog(card: Card) {
     this.selectedCard = card;
@@ -33,5 +47,9 @@ export class ProjectListCardComponent {
   closeCardDialog() {
     this.cardDialogVisible = false;
     this.selectedCard = null;
+  }
+
+  onDeleteList() {
+    this.deleteList.emit(this.listData.id);
   }
 }

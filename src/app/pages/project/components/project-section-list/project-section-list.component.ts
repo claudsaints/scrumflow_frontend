@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProjectListCardComponent } from "../project-list-card/project-list-card.component";
 import { List } from '../../../../types';
 import { DragScrollComponent } from 'ngx-drag-scroll';
+import { ListService } from '../../../../services/List/list.service';
 
 @Component({
   selector: 'app-project-section-list',
@@ -19,6 +20,20 @@ export class ProjectSectionListComponent{
     title: ""
   }];
 
+  constructor(private listService:ListService){}
+
+  handlerDeleteList(listId: number){
+    this.listService.delete(listId)
+    .subscribe({
+      next: () =>{
+        this.lists = this.lists.filter(l => l.id != listId);
+      },
+      error(err) {
+        console.log(err)
+      },
+    });
+  
+  }
 
  
 
