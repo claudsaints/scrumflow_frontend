@@ -60,6 +60,12 @@ export interface Section {
   lists: List[];
 }
 
+export interface SimpleSection{
+  id: number;
+  title:string;
+  description: string;
+}
+
 export interface Sprint {
   id: number;
   section: Pick<Section, "id" | "title" | "description" | "lists">;
@@ -77,7 +83,12 @@ export interface Project {
   owner: User;
   members: ProjectMember[];
   labels: Label[];
-  sections_ids: number[];
+  sections: [{
+    id: number;
+    title: string;
+    description: string;
+
+  }];
   sprints_ids: number[];
   background_image_url?: string;
 }

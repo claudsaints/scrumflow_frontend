@@ -31,7 +31,7 @@ export class ProjectComponent implements OnInit {
     },
     members: [],
     labels: [],
-    sections_ids: [],
+    sections: [{id: 0, title: "", description: ""}],
     sprints_ids: [],
   };
 
@@ -59,7 +59,7 @@ export class ProjectComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.projectService.findProjectById(id).subscribe((p) => {
       this.project = p;
-      this.selectedSectionId = p.sections_ids[0];
+      this.selectedSectionId = p.sections[0].id;
       this.setSection();
     });
   }

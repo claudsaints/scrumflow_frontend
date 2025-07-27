@@ -2,11 +2,10 @@
     <div class="section-header">
         <div class="section-header-content width-default">
             <div class="section-header-title">
-                <h3>Sprint 1</h3>
-                <p>sdasdsad</p>
+                <h3>{{selectedSection.title}}</h3>
             </div>
             <div class="section-header-actions">
-                <p-dropdown [(ngModel)]="selectedSection" [options]="sections"  />
+                <p-select [(ngModel)]="selectedSection.title" [id]="selectedSection.id.toString()" [options]="sections" optionLabel="title" />
                 <button pButton type="button" severity="secondary" icon="pi pi-chart-bar" label="Graph"></button>
             </div>
         </div>
