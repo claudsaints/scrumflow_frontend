@@ -13,12 +13,20 @@ import { SelectModule } from 'primeng/select';
 })
 export class ProjectSectionHeaderComponent {
   @Input() sections: SimpleSection[] = [{id: 0 ,   title: "" ,description: ""}];
+  
+  @Output() changeSection: EventEmitter<number> = new EventEmitter<number>();
+
+  @Output() addNewList: EventEmitter<number>  = new EventEmitter<number>();
 
   selectedSection: SimpleSection = this.sections[0];
-
-  @Output() changeSection: EventEmitter<number> = new EventEmitter<number>();
 
   selectChange() {
      this.changeSection.emit(this.selectedSection.id);
   }
+
+  buttonCLick(){
+    this.addNewList.emit(this.selectedSection.id);
+  }
+
+
 }

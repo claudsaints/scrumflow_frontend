@@ -2,13 +2,11 @@
     <div class="section-header">
         <div class="section-header-content width-default">
             
-            
-          
             <div class="section-header-actions">
                 <p-select (onChange)="selectChange()" [(ngModel)]="selectedSection" placeholder="Select Section" [id]="selectedSection.id.toString()" [options]="sections" optionLabel="title" />
                 <button pButton type="button" severity="secondary" icon="pi pi-chart-bar" label="Graph"></button>
             </div>
         </div>
 
-        <button pButton type="button" severity="primary" icon="pi pi-plus" label="Add another list" class="width-default"></button>
+        <button pButton type="button" (click)="buttonCLick()" severity="primary" icon="pi pi-plus" label="Add another list" class="width-default"></button>
     </div>

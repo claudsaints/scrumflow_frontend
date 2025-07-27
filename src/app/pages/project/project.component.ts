@@ -7,6 +7,7 @@ import { Project, Section } from '../../types';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../services/Project/project.service';
 import { SectionService } from '../../services/Section/section.service';
+import { ListService } from '../../services/List/list.service';
 
 @Component({
   selector: 'app-project',
@@ -47,12 +48,12 @@ export class ProjectComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private sectionService: SectionService
+    private sectionService: SectionService,
+    private ListSevice: ListService
   ) {}
 
   ngOnInit(): void {
     this.setProject();
-  
   }
 
   setProject(): void {
@@ -66,9 +67,16 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  handleSelectSectionChanges(id: number) {
+  handlerSelectSectionChanges(id: number) {
     this.sectionService
       .findSectionById(id)
       .subscribe((s) => (this.section = s));
+  }
+
+  handlerAddNewList(sectionId: number){
+    this.ListSevice.create(sectionId, "NewList")
+    .subscribe(newList => {
+      this.section.lists.push(newList);
+    })
   }
 }

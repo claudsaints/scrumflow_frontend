@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProjectListCardComponent } from "../project-list-card/project-list-card.component";
-import { List, Project } from '../../../../types';
-import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
+import { List } from '../../../../types';
+import { DragScrollComponent } from 'ngx-drag-scroll';
 
 @Component({
   selector: 'app-project-section-list',
@@ -10,7 +10,7 @@ import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
   templateUrl: './project-section-list.component.html',
   styleUrl: './project-section-list.component.css'
 })
-export class ProjectSectionListComponent {
+export class ProjectSectionListComponent{
   @Input() lists: List[] = [{
     id: 0,
     cardList: [],
@@ -18,5 +18,9 @@ export class ProjectSectionListComponent {
     position: 0,
     title: ""
   }];
+
+
+ 
+
     
 } 
