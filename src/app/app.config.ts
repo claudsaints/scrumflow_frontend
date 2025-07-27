@@ -4,10 +4,10 @@ import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import MyPreset from './theme/myPreset';
-import { authInterceptor } from './services/Auth/interceptor/AuthInterceptor';
+import { authInterceptor } from './services/Auth/interceptor/authInterceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

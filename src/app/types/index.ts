@@ -1,42 +1,86 @@
 
- type User = {
+
+export interface User {
   name: string;
   email: string;
-};
+}
 
- type Member = {
-  role: 'ADMIN' | 'MEMBER' | 'OWNER';
+export enum MemberRole {
+  OWNER = "OWNER",
+  MEMBER = "MEMBER",
+}
+
+export interface ProjectMember {
+  role: MemberRole;
   user: User;
   join_at: string;
-};
+}
 
- type Card = {
+export interface Label {
+  id: number;
+  name: string;
+  color: string;
+  cards: string[];
+}
+
+export enum CardType {
+  FEATURE = "FEATURE",
+  TASK = "TASK",
+  INTEGRATION = "INTEGRATION",
+  CODE_REVIEW = "CODE_REVIEW",
+  SETUP = "SETUP",
+  DOCUMENTATION = "DOCUMENTATION",
+  DESIGN = "DESIGN",
+  BUG = "BUG",
+}
+
+export interface Card {
+  id: number;
   title: string;
-  description: string | null;
-};
+  description: string;
+  start_at: string;
+  end_at: string;
+  type: CardType;
+  story_point: number;
+  labels: Label[];
+}
 
- type List = {
+export interface List {
   id: number;
   title: string;
   position: number;
   create_at: string;
   cardList: Card[];
-};
+}
 
- type Label = any; 
- type Sprint = any; 
+export interface Section {
+  id: number;
+  title: string;
+  description: string;
+  lists: List[];
+}
 
- type Project = {
+export interface Sprint {
+  id: number;
+  section: Pick<Section, "id" | "title" | "description" | "lists">;
+  title: string;
+  start_date: string;
+  end_date: string;
+  goal: string;
+}
+
+export interface Project {
   id: number;
   title: string;
   description: string;
   create_at: string;
   owner: User;
-  members: Member[];
-  lists: List[];
+  members: ProjectMember[];
   labels: Label[];
-  sprints: Sprint[];
-};
+  sections_ids: number[];
+  sprints_ids: number[];
+  background_image_url?: string;
+}
 
 type ProjectDTO  = {
   id: number;
@@ -50,14 +94,6 @@ type ProjectDTO  = {
   }
 }
 
-
-
 export type {
-  User,
-  Member,
-  Project,
-  List,
-  Label,
-  Card,
   ProjectDTO
 }
