@@ -2,9 +2,9 @@
   <app-navigation></app-navigation>
   <div class="home-container">
     <app-project-header/>
-    <app-project-section-header (changeSection)="handlerSelectSectionChanges($event)" (addNewList)="handlerAddNewList($event)"
+    <app-project-section-header 
       [sections]="project.sections"
     />
-    <app-project-section-list [lists]="section.lists"/>
+    <app-project-section-list/>
   </div>
 </div>

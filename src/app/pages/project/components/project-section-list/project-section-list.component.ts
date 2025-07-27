@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProjectListCardComponent } from "../project-list-card/project-list-card.component";
-import { List } from '../../../../types';
+import { List, Section } from '../../../../types';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 import { ListService } from '../../../../services/List/list.service';
+import { SectionService } from '../../../../services/Section/section.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project-section-list',
@@ -11,7 +13,7 @@ import { ListService } from '../../../../services/List/list.service';
   templateUrl: './project-section-list.component.html',
   styleUrl: './project-section-list.component.css'
 })
-export class ProjectSectionListComponent{
+export class ProjectSectionListComponent implements OnInit{
   @Input() lists: List[] = [{
     id: 0,
     cardList: [],
@@ -20,19 +22,14 @@ export class ProjectSectionListComponent{
     title: ""
   }];
 
-  constructor(private listService:ListService){}
+  private sectionSubscription: Subscription | undefined
 
-  handlerDeleteList(listId: number){
-    this.listService.delete(listId)
-    .subscribe({
-      next: () =>{
-        this.lists = this.lists.filter(l => l.id != listId);
-      },
-      error(err) {
-        console.log(err)
-      },
-    });
-  
+  constructor(private sectionService: SectionService){}
+
+  ngOnInit(): void {
+    this.sectionSubscription = this.sectionService.section$.subscribe( section => {
+      this.lists = section.lists;
+    })
   }
 
  

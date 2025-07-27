@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
 import { MenuModule } from 'primeng/menu';
 import { ListService } from '../../../../services/List/list.service';
+import { SectionService } from '../../../../services/Section/section.service';
 @Component({
   selector: 'app-project-list-card',
   imports: [Button, DialogModule, CommonModule, CardComponent, MenuModule],
@@ -22,7 +23,7 @@ export class ProjectListCardComponent {
     create_at: '',
   };
 
-  @Output() deleteList: EventEmitter<number> = new EventEmitter<number>();
+ 
 
   items: MenuItem[] = [
     { id: 'edit_list', label: 'Edit', icon: 'pi pi-pen-to-square' },
@@ -37,7 +38,7 @@ export class ProjectListCardComponent {
   cardDialogVisible = false;
   selectedCard: Card | null = null;
 
-  constructor(private listService: ListService) {}
+  constructor(private listService: ListService, private sectionService: SectionService) {}
 
   openCardDialog(card: Card) {
     this.selectedCard = card;
@@ -50,6 +51,6 @@ export class ProjectListCardComponent {
   }
 
   onDeleteList() {
-    this.deleteList.emit(this.listData.id);
+    this.sectionService.deleteListFromCurrentSection(this.listData.id).subscribe();
   }
 }

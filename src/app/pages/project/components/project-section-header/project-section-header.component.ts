@@ -5,6 +5,8 @@ import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { ButtonModule } from 'primeng/button';
 import { Section, SimpleSection } from '../../../../types';
 import { SelectModule } from 'primeng/select';
+import { SectionService } from '../../../../services/Section/section.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-project-section-header',
   imports: [CascadeSelectModule, CommonModule, FormsModule, SelectModule, ButtonModule],
@@ -14,24 +16,32 @@ import { SelectModule } from 'primeng/select';
 export class ProjectSectionHeaderComponent implements OnInit{
   @Input() sections: SimpleSection[] = [{id: 0 ,   title: "" ,description: ""}];
   
-  @Output() changeSection: EventEmitter<number> = new EventEmitter<number>();
-
-  @Output() addNewList: EventEmitter<number>  = new EventEmitter<number>();
-  
   selectedSection!: SimpleSection;
+
+  sectionSubscription: Subscription | undefined;
+
+  constructor(private sectionService: SectionService){}
   
   
   ngOnInit(): void {
-    this.selectedSection = this.sections[0];
+    
+
+    this.sectionSubscription = this.sectionService.section$.subscribe(section => {
+      this.selectedSection = {
+        id: section.id,
+        title: section.title,
+        description: section.description
+      };  
+    })
   }
 
 
   selectChange() {
-     this.changeSection.emit(this.selectedSection.id);
+     this.sectionService.findSectionById(this.selectedSection.id).subscribe();
   }
 
   buttonCLick(){
-    this.addNewList.emit(this.selectedSection.id);
+    this.sectionService.addListToCurrentSection("New List").subscribe();
   }
 
 

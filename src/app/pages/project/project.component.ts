@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../services/Project/project.service';
 import { SectionService } from '../../services/Section/section.service';
 import { ListService } from '../../services/List/list.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project',
@@ -36,21 +37,11 @@ export class ProjectComponent implements OnInit {
     sprints_ids: [],
   };
 
-  selectedSectionId: number = 0;
-
-  section: Section = {
-    id: 0,
-    description: '',
-    title: '',
-    lists: [],
-  };
 
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private sectionService: SectionService,
-    private ListSevice: ListService
-  ) {}
+    private sectionService: SectionService  ) {}
 
   ngOnInit(): void {
     this.setProject();
@@ -60,22 +51,12 @@ export class ProjectComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.projectService.findProjectById(id).subscribe((p) => {
       this.project = p;
-      this.selectedSectionId = p.sections[0].id;
+      this.sectionService.findSectionById(p.sections[0].id).subscribe({
+      next: () => console.log(`Seção carregada com sucesso.`),
+      error: (err) => console.error(err)
+    });
     });
   }
 
-  handlerSelectSectionChanges(id: number) {
-    this.sectionService
-      .findSectionById(id)
-      .subscribe((s) => (this.section = s));
-  }
 
-  handlerAddNewList(sectionId: number){
-    this.ListSevice.create(sectionId, "NewList")
-    .subscribe({
-      next: (newList) => {
-         this.section.lists.push(newList);
-      }
-    })
-  }
 }
