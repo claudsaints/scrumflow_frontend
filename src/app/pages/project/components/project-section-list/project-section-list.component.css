@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    background-color: yellow;
     margin-inline: 4rem;
     width: 87%;
     min-height: 300px;

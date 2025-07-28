@@ -58,7 +58,6 @@ const MyPreset = definePreset(Aura, {
             css: () => `
                 .p-button {
                     color: #fff;
-                    background: var(--primary);
                     border: none;
                     border-radius: var(--radius, 4px);
                     font-family: inherit;
@@ -69,12 +68,22 @@ const MyPreset = definePreset(Aura, {
                     transition: var(--transition, all 0.2s);
                 }
 
-                .p-button:hover {
+                .p-button-primary{
+                 background: var(--primary);
+                 }
+
+                .p-button-primary:hover {
                     background: var(--primary-hover);
                     color: #fff;
                     cursor: pointer;
                 }
 
+                .p-button-text.p-button-primary{
+                     background: transparent;
+                     color: black;
+                }
+
+    
                 /* Botão com severity="secondary" */
                 .p-button-secondary {
                     background: var(--secondary);

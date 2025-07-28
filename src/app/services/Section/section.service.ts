@@ -34,6 +34,8 @@ export class SectionService extends HttpModelService {
   findSectionById(sectionId: number):Observable<Section>{
     return this.http.get<Section>(`${this.serverUrl}/project/sections/${sectionId}`).pipe(
       tap(section => {
+        section.lists.sort((a,b) => a.position - b.position);
+        
         this._section.next(section); 
       }),
       catchError(error => {
@@ -77,7 +79,7 @@ export class SectionService extends HttpModelService {
       tap(() => {
         const updatedLists = currentSection.lists.filter(list => list.id !== listId);
         const updatedSection = { ...currentSection, lists: updatedLists };
-        this._section.next(updatedSection); // Atualiza o estado compartilhado
+        this._section.next(updatedSection); 
       }),
       catchError(error => {
         console.error('Erro ao deletar lista da seção atual:', error);

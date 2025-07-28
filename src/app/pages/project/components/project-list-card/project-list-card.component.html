@@ -2,7 +2,7 @@
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
         <h3 style="flex:1; margin:0;">{{listData.title}}</h3>
         <p-menu #menu [model]="items" [popup]="true"  c/>
-        <p-button (click)="menu.toggle($event)" icon="pi pi-ellipsis-v" />
+        <p-button (click)="menu.toggle($event)" variant="text" severity="primary" icon="pi pi-ellipsis-v" />
     </div>
 
     <div class="card-list">
@@ -15,5 +15,30 @@
 
     <app-card [card]="selectedCard" [visible]="cardDialogVisible" [onClose]="closeCardDialog.bind(this)"></app-card>
 
-    <p-button pRipple type="button" variant="text" icon="pi pi-plus" label="Adicionar card" class="p-button-text p-button-sm"/>
+    <p-button pRipple type="button" severity="primary" variant="text" icon="pi pi-plus" label="Adicionar card" 
+        class="p-button-text p-button-sm"
+        (onClick)="showCreateCardDialog()"
+    />
 </div>
+
+<p-dialog header="Create New Card" [modal]="true" [(visible)]="isCreateCardVisible" [style]="{ width: '25rem' }">
+    <p-iftalabel style="margin-bottom: 2rem;">
+        <input pInputText id="name"  style="width: 100%;" />
+        <label for="list-title">Card Name</label>
+    </p-iftalabel>
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="danger" (click)="isCreateCardVisible = false" />
+        <p-button label="Create" (click)="isCreateCardVisible = false" />
+    </div>
+</p-dialog>
+
+<p-dialog header="Edit List" [modal]="true" [(visible)]="isEditLabelVisible" [style]="{ width: '25rem' }">
+    <p-iftalabel style="margin-bottom: 2rem;">
+        <input pInputText id="list-title" [value]="listData.title" style="width: 100%;" />
+        <label for="list-title">Title</label>
+    </p-iftalabel>
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="danger" (click)="isEditLabelVisible = false" />
+        <p-button label="Save" (click)="isEditLabelVisible = false" />
+    </div>
+</p-dialog>
