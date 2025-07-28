@@ -5,9 +5,9 @@
       <div style="display: flex; flex-direction: column; gap: 0.8rem; width: 300px;">
         <button pButton type="button" severity="secondary" icon="pi pi-user-plus" label="Invite Workspace members"></button>
         <div style="display: flex; justify-content: space-between; gap: 0.5rem;">
-          <button pButton type="button" severity="secondary" icon="pi pi-th-large" label="Views"></button>
-          <button pButton type="button" severity="secondary" icon="pi pi-cog" label="Settings"></button>
-          <button pButton type="button" severity="secondary" icon="pi pi-user" label="Members"></button>
+          <button [routerLink]="['/home']" pButton type="button" severity="secondary" icon="pi pi-th-large" label="Views"></button>
+          <button [routerLink]="['/home']" pButton type="button" severity="secondary" icon="pi pi-cog" label="Settings"></button>
+          <button [routerLink]="['/home']" pButton type="button" severity="secondary" icon="pi pi-user" label="Members"></button>
         </div>
       </div>
     </div>

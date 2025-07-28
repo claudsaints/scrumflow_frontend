@@ -9,24 +9,33 @@
     min-height: 100vh;    
     align-items: center;
     justify-content: flex-start;
+    gap: 2rem;
     padding-top: 1rem;
     z-index: 10;
 }
 
 
+::ng-deep .is-active .p-button-icon{
+    background-color: hsl(184, 40%, 47%);
+    border-radius: 3rem;
+    width: 100%;
 
-.avatar {
-    background-color: var(--secondary);
-    height: 34px;
-    width: 34px;
-    border-radius: 50%;
 }
-
 
 
 
 @media (max-width: 1050px) {
     .sidebar {
-        display: none;
+        position: absolute;
+        height: 8rem; 
+        width: 100%;
+        max-block-size: 80px;
+        min-height: 0px;
+        justify-content: space-around;
+        gap: 2px;
+        bottom: 1px;
+        flex-direction: row;
+        z-index: 2;
+
     }
 }

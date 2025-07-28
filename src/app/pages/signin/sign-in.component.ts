@@ -4,7 +4,7 @@ import { AuthService } from '../../services/Auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from '../../shared/components/loading-spinner/loading-spinner.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, TitleStrategy } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormHelperService } from '../../services/Form/form-helper.service';
 import { Toast } from "primeng/toast";
 import {PasswordModule} from "primeng/password"
