@@ -11,7 +11,8 @@ import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
 export class NavigationComponent implements OnInit {
   
   isOnProject: boolean = false;
-  projectId: number = 0;
+  
+  projectId: string = "";
 
   constructor(private router: Router, private route: ActivatedRoute){}
 
@@ -22,11 +23,11 @@ export class NavigationComponent implements OnInit {
   
 
   showProjectNavigation():void{
-    const checkRoute = this.router.url.includes("project");
+    const checkRoute = this.router.url.includes("project") ||  this.router.url.includes("config");
 
     if (checkRoute){
       this.isOnProject = true;
-      this.projectId = Number(this.route.snapshot.paramMap.get('id'));
+      this.projectId = String(this.route.snapshot.paramMap.get('id'));
     }
   }
 

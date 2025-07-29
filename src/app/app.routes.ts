@@ -12,6 +12,6 @@ export const routes: Routes = [
     {path: "signup" , component: SignUpComponent},
     {path: "home" , component: HomeComponent},
     {path: "project/:id", component: ProjectComponent},
-    {path: "project/:id/config", component: ProjectConfigComponent}
+    {path: "config/:projectId", component: ProjectConfigComponent}
     
 ];

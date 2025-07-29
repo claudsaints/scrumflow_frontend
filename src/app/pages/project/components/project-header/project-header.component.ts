@@ -12,11 +12,12 @@ import { SimpleSection } from '../../../../types';
 })
 export class ProjectHeaderComponent {
 
-  @Input() projectId: number = 0;
+  @Input() projectId: string = "";
 
 
   newSection: SimpleSection = {
     id: 0,
+    uuid: "",
     description: "",
     title: "",
   }

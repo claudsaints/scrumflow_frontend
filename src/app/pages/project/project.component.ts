@@ -24,6 +24,7 @@ import { Subscription } from 'rxjs';
 export class ProjectComponent implements OnInit {
   project: Project = {
     id: 0,
+    uuid: "",
     title: '',
     description: '',
     create_at: '',
@@ -33,7 +34,7 @@ export class ProjectComponent implements OnInit {
     },
     members: [],
     labels: [],
-    sections: [{id: 0, title: "", description: ""}],
+    sections: [{id: 0,uuid: "", title: "", description: ""}],
     sprints_ids: [],
   };
 
@@ -48,10 +49,10 @@ export class ProjectComponent implements OnInit {
   }
 
   setProject(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.projectService.findProjectById(id).subscribe((p) => {
+    const uuid = String(this.route.snapshot.paramMap.get('id'));
+    this.projectService.findProjectById(uuid).subscribe((p) => {
       this.project = p;
-      this.sectionService.findSectionById(p.sections[0].id).subscribe({
+      this.sectionService.findSectionById(p.sections[0].uuid).subscribe({
       next: () => console.log(`Seção carregada com sucesso.`),
       error: (err) => console.error(err)
     });

@@ -20,6 +20,7 @@ import { IftaLabelModule } from 'primeng/iftalabel';
 export class ProjectListCardComponent {
   @Input() listData: List = {
     id: 0,
+    uuid: "",
     title: '',
     position: 0,
     cardList: [],
@@ -70,6 +71,6 @@ export class ProjectListCardComponent {
   }
 
   onDeleteList() {
-    this.sectionService.deleteListFromCurrentSection(this.listData.id).subscribe();
+    this.sectionService.deleteListFromCurrentSection(this.listData.uuid).subscribe();
   }
 }

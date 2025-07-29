@@ -19,8 +19,8 @@ export class ProjectService extends HttpModelService {
     return this.http.get<ProjectDTO[]>(`${this.serverUrl}?email=${this.userService.getEmailFromSessionStorage()}`)
   }
 
-  findProjectById(projectId: number): Observable<Project>{
-    return this.http.get<Project>(`${this.serverUrl}/${projectId}`)
+  findProjectById(projectUuid: string): Observable<Project>{
+    return this.http.get<Project>(`${this.serverUrl}/${projectUuid}`)
   }
 
 

@@ -36,6 +36,7 @@ export enum CardType {
 
 export interface Card {
   id: number;
+  uuid: string;
   title: string;
   description: string;
   start_at: string;
@@ -46,6 +47,7 @@ export interface Card {
 }
 
 export interface List {
+  uuid: string;
   id: number;
   title: string;
   position: number;
@@ -55,6 +57,7 @@ export interface List {
 
 export interface Section {
   id: number;
+  uuid: string;
   title: string;
   description: string;
   lists: List[];
@@ -62,12 +65,14 @@ export interface Section {
 
 export interface SimpleSection{
   id: number;
+  uuid: string;
   title:string;
   description: string;
 }
 
 export interface Sprint {
   id: number;
+  uuid: string;
   section: Pick<Section, "id" | "title" | "description" | "lists">;
   title: string;
   start_date: string;
@@ -77,6 +82,7 @@ export interface Sprint {
 
 export interface Project {
   id: number;
+  uuid: string;
   title: string;
   description: string;
   create_at: string;
@@ -85,6 +91,7 @@ export interface Project {
   labels: Label[];
   sections: [{
     id: number;
+    uuid: string;
     title: string;
     description: string;
 
@@ -95,6 +102,7 @@ export interface Project {
 
 type ProjectDTO  = {
   id: number;
+  uuid: string;
   title: string;
   description: string;
   backgroundImage: string;

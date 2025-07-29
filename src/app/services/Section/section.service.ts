@@ -12,6 +12,7 @@ export class SectionService extends HttpModelService {
 
   private _section = new BehaviorSubject<Section>({
     id: 0,
+    uuid: "",
     description: '',
     title: '',
     lists: [],
@@ -23,16 +24,16 @@ export class SectionService extends HttpModelService {
     super(http)
   }
 
-  create(title: string, description: string, projectId: number):Observable<Section>{
-    return this.http.post<Section>(`${this.serverUrl}/project/sections/${projectId}`, {title,description});
+  create(title: string, description: string, projectUuid: string):Observable<Section>{
+    return this.http.post<Section>(`${this.serverUrl}/project/sections/${projectUuid}`, {title,description});
   }
   
-  findAllSectionInProject(projectId:number):Observable<Section[]>{
-    return this.http.get<Section[]>(`${this.serverUrl}/project/sections?projectId=${projectId}`)
+  findAllSectionInProject(projectUuid:string):Observable<Section[]>{
+    return this.http.get<Section[]>(`${this.serverUrl}/project/sections?projectId=${projectUuid}`)
   }
 
-  findSectionById(sectionId: number):Observable<Section>{
-    return this.http.get<Section>(`${this.serverUrl}/project/sections/${sectionId}`).pipe(
+  findSectionById(sectionUuid: string):Observable<Section>{
+    return this.http.get<Section>(`${this.serverUrl}/project/sections/${sectionUuid}`).pipe(
       tap(section => {
         section.lists.sort((a,b) => a.position - b.position);
         
@@ -56,7 +57,7 @@ export class SectionService extends HttpModelService {
       return throwError(() => new Error('Nenhuma seção ativa selecionada para adicionar lista.'));
     }
 
-    return this.listService.create(currentSection.id, title).pipe(
+    return this.listService.create(currentSection.uuid, title).pipe(
       tap(createdListFromApi => {
         const updatedLists = [...currentSection.lists, createdListFromApi];
         const updatedSection = { ...currentSection, lists: updatedLists };
@@ -69,15 +70,15 @@ export class SectionService extends HttpModelService {
     );
   }
 
-  deleteListFromCurrentSection(listId: number): Observable<void> {
+  deleteListFromCurrentSection(listUuid: string): Observable<void> {
     const currentSection = this._section.getValue();
-    if (!currentSection || !currentSection.id) {
+    if (!currentSection || !currentSection.uuid) {
       return throwError(() => new Error('Nenhuma seção ativa selecionada para deletar lista.'));
     }
 
-    return this.listService.delete(listId).pipe(
+    return this.listService.delete(listUuid).pipe(
       tap(() => {
-        const updatedLists = currentSection.lists.filter(list => list.id !== listId);
+        const updatedLists = currentSection.lists.filter(list => list.uuid !== listUuid);
         const updatedSection = { ...currentSection, lists: updatedLists };
         this._section.next(updatedSection); 
       }),

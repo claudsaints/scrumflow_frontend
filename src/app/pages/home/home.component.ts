@@ -3,10 +3,11 @@ import { NavigationComponent } from "../../shared/components/navigation/navigati
 import { Button } from "primeng/button";
 import { ProjectService } from '../../services/Project/project.service';
 import { ProjectDTO } from '../../types';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [NavigationComponent, Button],
+  imports: [NavigationComponent, Button, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
