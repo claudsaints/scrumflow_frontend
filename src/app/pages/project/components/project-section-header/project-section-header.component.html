@@ -3,8 +3,7 @@
         <div class="section-header-content width-default">
             
             <div class="section-header-actions">
-                <p-select (onChange)="selectChange()"  [(ngModel)]="selectedSection" placeholder="Select Section" [id]="selectedSection.uuid" [options]="sections" optionLabel="title" />
-                <button pButton type="button" severity="secondary" icon="pi pi-chart-bar" label="Graph"></button>
+                <p-select (onChange)="selectChange()"  [options]="sections" [(ngModel)]="selectedSection" optionLabel="title"  placeholder="Select Section" />
             </div>
         </div>
 

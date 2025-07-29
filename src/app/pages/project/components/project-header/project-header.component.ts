@@ -16,7 +16,6 @@ export class ProjectHeaderComponent {
 
 
   newSection: SimpleSection = {
-    id: 0,
     uuid: "",
     description: "",
     title: "",

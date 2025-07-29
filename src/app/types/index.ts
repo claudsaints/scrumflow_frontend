@@ -64,7 +64,6 @@ export interface Section {
 }
 
 export interface SimpleSection{
-  id: number;
   uuid: string;
   title:string;
   description: string;
@@ -90,11 +89,9 @@ export interface Project {
   members: ProjectMember[];
   labels: Label[];
   sections: [{
-    id: number;
     uuid: string;
     title: string;
     description: string;
-
   }];
   sprints_ids: number[];
   background_image_url?: string;

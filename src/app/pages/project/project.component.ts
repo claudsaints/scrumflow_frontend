@@ -34,7 +34,7 @@ export class ProjectComponent implements OnInit {
     },
     members: [],
     labels: [],
-    sections: [{id: 0,uuid: "", title: "", description: ""}],
+    sections: [{uuid: "", title: "", description: ""}],
     sprints_ids: [],
   };
 

@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './project-section-header.component.css'
 })
 export class ProjectSectionHeaderComponent implements OnInit{
-  @Input() sections: SimpleSection[] = [{id: 0 , uuid: "",   title: "" ,description: ""}];
+  @Input() sections!: SimpleSection[];
   
   selectedSection!: SimpleSection;
 
@@ -24,11 +24,8 @@ export class ProjectSectionHeaderComponent implements OnInit{
   
   
   ngOnInit(): void {
-    
-
     this.sectionSubscription = this.sectionService.section$.subscribe(section => {
       this.selectedSection = {
-        id: section.id,
         uuid: section.uuid,
         title: section.title,
         description: section.description
@@ -39,6 +36,7 @@ export class ProjectSectionHeaderComponent implements OnInit{
 
   selectChange() {
      this.sectionService.findSectionById(this.selectedSection.uuid).subscribe();
+     console.log(this.selectedSection);
   }
 
   buttonCLick(){
