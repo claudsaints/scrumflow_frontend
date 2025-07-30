@@ -9,9 +9,10 @@
     cdkDropList
     cdkDropListOrientation="horizontal"
     (cdkDropListDropped)="drop($event)"
+    
   >
     @for(item of lists; track $index){
-    <app-project-list-card [listData]="item" cdkDrag />
+    <app-project-list-card [listData]="item" cdkDrag [cdkDragDisabled]="dragDisabled" />
     }
   </div>
 </div>

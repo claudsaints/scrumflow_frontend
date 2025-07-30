@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IftaLabel, IftaLabelModule } from "primeng/iftalabel";
-import { DialogModule } from "primeng/dialog";
-import { ButtonModule } from "primeng/button";
+import { IftaLabel, IftaLabelModule } from 'primeng/iftalabel';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { DragControlService } from '../../../services/Drag/drag-control.service';
 
-export interface IDialog{
+export interface IDialog {
   inputModel: string;
   header: string;
   visible: boolean;
@@ -14,18 +15,21 @@ export interface IDialog{
   returnButtonLabel: string;
   goButtonLabel: string;
 }
- 
 
 @Component({
   selector: 'app-dialog',
-  imports: [IftaLabel, DialogModule, ButtonModule,DialogModule,
+  imports: [
+    IftaLabel,
+    DialogModule,
+    ButtonModule,
+    DialogModule,
     IftaLabel,
     InputTextModule,
     IftaLabelModule,
     FormsModule,
   ],
   templateUrl: './dialog.component.html',
-  styleUrl: './dialog.component.css'
+  styleUrl: './dialog.component.css',
 })
 export class DialogComponent {
   @Input() data!: IDialog;
@@ -34,11 +38,21 @@ export class DialogComponent {
 
   @Output() setButtonAction: EventEmitter<any> = new EventEmitter<any>();
 
+  constructor(private dragService: DragControlService) {}
 
-
-  onClick(){
+  onClick() {
     this.setButtonAction.emit();
   }
 
+  closeDialog() {
+    this.data.visible = false;
+  }
   
+  disableDrag() {
+    this.dragService.setDragDisabled(false);
+  }
+
+  enableDrag() {
+    this.dragService.setDragDisabled(true);
+  }
 }

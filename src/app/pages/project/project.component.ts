@@ -3,12 +3,9 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
 import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 import { ProjectSectionHeaderComponent } from './components/project-section-header/project-section-header.component';
 import { ProjectSectionListComponent } from './components/project-section-list/project-section-list.component';
-import { Project, Section } from '../../types';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../services/Project/project.service';
 import { SectionService } from '../../services/Section/section.service';
-import { ListService } from '../../services/List/list.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project',

@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ProjectListCardComponent } from '../project-list-card/project-list-card.component';
-import { List, Section } from '../../../../types';
-import { DragScrollComponent } from 'ngx-drag-scroll';
+import { List } from '../../../../types';
 import { SectionService } from '../../../../services/Section/section.service';
 import { Subscription } from 'rxjs';
 import {
@@ -11,6 +10,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Button } from 'primeng/button';
 import { ListService } from '../../../../services/List/list.service';
+import { DragControlService } from '../../../../services/Drag/drag-control.service';
 
 @Component({
   selector: 'app-project-section-list',
@@ -19,8 +19,6 @@ import { ListService } from '../../../../services/List/list.service';
   styleUrl: './project-section-list.component.css',
 })
 export class ProjectSectionListComponent implements OnInit {
-  sectionUuid: string = '';
-
   @Input() lists: List[] = [
     {
       id: 0,
@@ -34,37 +32,34 @@ export class ProjectSectionListComponent implements OnInit {
 
   @ViewChild('nav') listContainer!: ElementRef;
 
+  public sectionUuid: string = '';
+
+  public dragDisabled: boolean = false;
+
   private sectionSubscription: Subscription | undefined;
 
   constructor(
     private sectionService: SectionService,
-    private listService: ListService
+    private listService: ListService,
+    private dragService: DragControlService
   ) {}
 
   ngOnInit(): void {
-    this.sectionSubscription = this.sectionSubscription = this.sectionSubscription =
-      this.sectionService.section$.subscribe((section) => {
-        this.lists = section.lists;
-        this.sectionUuid = section.uuid;
-      });
+    this.subscribe();
   }
 
   drop(event: CdkDragDrop<List[]>) {
-    console.log(
-      this.sectionUuid,
-      event.item.data,
-      event.currentIndex,
-      this.lists[event.previousIndex].uuid
-    );
-    this.listService
-      .updatePosition(
-        this.sectionUuid,
-        this.lists[event.previousIndex].uuid,
-        event.currentIndex
-      )
-      .subscribe();
+    if (event.previousIndex != event.currentIndex) {
+      this.listService
+        .updatePosition(
+          this.sectionUuid,
+          this.lists[event.previousIndex].uuid,
+          event.currentIndex
+        )
+        .subscribe();
 
-    moveItemInArray(this.lists, event.previousIndex, event.currentIndex);
+      moveItemInArray(this.lists, event.previousIndex, event.currentIndex);
+    }
   }
 
   ngAfterViewInit() {
@@ -84,6 +79,19 @@ export class ProjectSectionListComponent implements OnInit {
     this.listContainer.nativeElement.scrollBy({
       left: 300,
       behavior: 'smooth',
+    });
+  }
+
+  subscribe(): void {
+    this.sectionSubscription = this.sectionService.section$.subscribe(
+      (section) => {
+        this.lists = section.lists;
+        this.sectionUuid = section.uuid;
+      }
+    );
+
+    this.dragService.dragDisabled$.subscribe((value) => {
+      this.dragDisabled = value;
     });
   }
 }

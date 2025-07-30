@@ -16,6 +16,7 @@ import {
   IDialog,
 } from '../../../../shared/components/dialog/dialog.component';
 import { Subscription } from 'rxjs';
+import { DragControlService } from '../../../../services/Drag/drag-control.service';
 
 @Component({
   selector: 'app-project-list-card',
@@ -46,7 +47,7 @@ export class ProjectListCardComponent implements OnInit {
   };
 
   newCardDialogData: IDialog = {
-    header: `Add new Card - `,
+    header: `Add new Card`,
     goButtonLabel: 'Add',
     inputId: 'card',
     inputLabel: 'Card Name',
@@ -56,7 +57,7 @@ export class ProjectListCardComponent implements OnInit {
   };
 
   editListDialogData: IDialog = {
-    header: `Edit List - `,
+    header: `Edit List`,
     goButtonLabel: 'Update',
     inputId: 'listEdit',
     inputLabel: 'Title',
@@ -92,12 +93,12 @@ export class ProjectListCardComponent implements OnInit {
 
   constructor(
     private listService: ListService,
-    private sectionService: SectionService
+    private sectionService: SectionService,
+    private dragService: DragControlService
   ) {}
 
   ngOnInit(): void {
-    this.newCardDialogData.header += this.listData.title;
-    this.editListDialogData.header += this.listData.title;
+    this.sectionSubscription = this.sectionService.section$.subscribe();
   }
 
   onEditList() {
@@ -109,7 +110,6 @@ export class ProjectListCardComponent implements OnInit {
         next: () => {
           this.sectionService.reloadSection().subscribe();
         },
-        //TODO: ADD TOAST FOR ERROR
         complete: () => {
           this.loading = false;
           this.editListDialogData.visible = false;
@@ -132,11 +132,13 @@ export class ProjectListCardComponent implements OnInit {
   }
 
   openCardDialog(card: Card) {
+    this.dragService.setDragDisabled(true);
     this.selectedCard = card;
     this.cardDialogVisible = true;
   }
 
   closeCardDialog() {
+    this.dragService.setDragDisabled(false);
     this.cardDialogVisible = false;
     this.selectedCard = null;
   }
