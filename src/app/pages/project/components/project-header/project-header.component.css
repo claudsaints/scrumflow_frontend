@@ -6,6 +6,10 @@
     flex-shrink: 0;
 }
 
+.default-card:hover{
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .section-header {
         padding-inline: 25px;

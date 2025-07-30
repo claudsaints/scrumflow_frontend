@@ -18,8 +18,8 @@
 ::ng-deep .is-active .p-button-icon{
     background-color: hsl(184, 40%, 47%);
     border-radius: 3rem;
-    width: 100%;
-
+    border: 8px solid;
+    border-color: hsl(184, 40%, 47%);
 }
 
 

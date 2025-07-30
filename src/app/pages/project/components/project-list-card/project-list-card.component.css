@@ -59,3 +59,6 @@
     box-shadow: 0 4px 8px rgba(9,30,66,.13);
 }
 
+::ng-deep .deleteOption .p-menu-item-label{
+    color: red;
+}

@@ -44,6 +44,10 @@ export class ProjectListCardComponent {
       label: 'Delete',
       icon: 'pi pi-trash',
       command: () => this.onDeleteList(),
+      styleClass: "deleteOption",
+      iconStyle: {
+        color: "red"
+      }
     },
   ];
 
