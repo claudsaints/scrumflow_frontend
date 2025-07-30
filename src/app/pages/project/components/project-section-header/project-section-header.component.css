@@ -38,4 +38,7 @@
         justify-content: space-around;
         height: 18rem;
     }
+    .section-header-actions{
+        justify-content: center;
+    }
 }

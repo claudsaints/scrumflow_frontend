@@ -8,6 +8,7 @@ import { IftaLabel, IftaLabelModule } from 'primeng/iftalabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ProjectService } from '../../../../services/Project/project.service';
+import { IDialog, DialogComponent } from '../../../../shared/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-project-header',
@@ -19,7 +20,8 @@ import { ProjectService } from '../../../../services/Project/project.service';
     InputTextModule,
     IftaLabelModule,
     FormsModule,
-  ],
+    DialogComponent
+],
   templateUrl: './project-header.component.html',
   styleUrl: './project-header.component.css',
 })
@@ -30,11 +32,17 @@ export class ProjectHeaderComponent implements OnInit {
 
   isCreateSectionVisible: boolean = false;
 
-  newSection: SimpleSection = {
-    uuid: '',
-    description: '',
-    title: '',
-  };
+
+
+  dialogData: IDialog = {
+    inputModel: "",
+    header: "Create New Section",
+    goButtonLabel: "Create",
+    returnButtonLabel: "Cancel",
+    inputId: "nameCreateSection",
+    inputLabel: "Section Name",
+    visible: false
+  }
 
   constructor(
     private sectionService: SectionService,
@@ -51,8 +59,8 @@ export class ProjectHeaderComponent implements OnInit {
     this.loading = true;
     this.sectionService
       .create(
-        this.newSection.title,
-        this.newSection.description,
+        this.dialogData.inputModel,
+        "",
         this.projectId
       )
       .subscribe({
@@ -70,6 +78,6 @@ export class ProjectHeaderComponent implements OnInit {
   }
 
   showCreateSectionDialog() {
-    this.isCreateSectionVisible = true;
+    this.dialogData.visible = true;
   }
 }

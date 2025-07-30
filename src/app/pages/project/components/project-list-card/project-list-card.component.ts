@@ -28,7 +28,8 @@ export class ProjectListCardComponent {
     create_at: '',
   };
 
- 
+  loading: boolean = false;
+
   isCreateCardVisible: boolean = false;
 
   isEditLabelVisible: boolean = false;
@@ -56,14 +57,24 @@ export class ProjectListCardComponent {
   selectedCard: Card | null = null;
 
   constructor(private listService: ListService, private sectionService: SectionService) {}
+  
+  showEditListDialog(){
+    this.isEditLabelVisible = true;
+  }
+
+  onEditList(){
+    //TODO 
+  }
+
+  onDeleteList() {
+    this.sectionService.deleteListFromCurrentSection(this.listData.uuid).subscribe();
+  }
+
 
   showCreateCardDialog(){
     this.isCreateCardVisible = true;
   }
 
-  showEditListDialog(){
-    this.isEditLabelVisible = true;
-  }
 
   openCardDialog(card: Card) {
     this.selectedCard = card;
@@ -75,7 +86,4 @@ export class ProjectListCardComponent {
     this.selectedCard = null;
   }
 
-  onDeleteList() {
-    this.sectionService.deleteListFromCurrentSection(this.listData.uuid).subscribe();
-  }
 }
