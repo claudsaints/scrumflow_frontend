@@ -57,6 +57,8 @@ h5,
 h6 {
   font-weight: 600;
   color: var(--primary);
+  overflow: hidden;    
+    text-overflow: ellipsis;
 }
 
 p {
@@ -236,4 +238,10 @@ Projects && Home Screens
     height: 200px;
     border-bottom: 2px solid;
     border-color: var(--gray-content);
+}
+.p-dialog-title {
+    white-space: nowrap; /* Impede que o texto quebre para a próxima linha */
+    overflow: hidden;    /* Esconde qualquer texto que ultrapasse o contêiner */
+    text-overflow: ellipsis; /* Adiciona reticências (...) para o texto cortado */
+    max-width: 300px; /* Defina uma largura máxima para o título, ajuste conforme necessário */
 }

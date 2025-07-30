@@ -10,10 +10,11 @@ import { ListService } from '../../../../services/List/list.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { SectionService } from '../../../../services/Section/section.service';
 import { IftaLabelModule } from 'primeng/iftalabel';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-project-list-card',
-  imports: [Button, DialogModule, CommonModule, CardComponent, MenuModule,InputTextModule, IftaLabelModule],
+  imports: [Button, DialogModule, CommonModule, CardComponent, MenuModule,InputTextModule, IftaLabelModule, FormsModule],
   templateUrl: './project-list-card.component.html',
   styleUrl: './project-list-card.component.css',
 })

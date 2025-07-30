@@ -7,6 +7,7 @@ import { Section, SimpleSection } from '../../../../types';
 import { SelectModule } from 'primeng/select';
 import { SectionService } from '../../../../services/Section/section.service';
 import { Subscription } from 'rxjs';
+import { ProjectService } from '../../../../services/Project/project.service';
 @Component({
   selector: 'app-project-section-header',
   imports: [CascadeSelectModule, CommonModule, FormsModule, SelectModule, ButtonModule],
@@ -14,23 +15,20 @@ import { Subscription } from 'rxjs';
   styleUrl: './project-section-header.component.css'
 })
 export class ProjectSectionHeaderComponent implements OnInit{
-  @Input() sections!: SimpleSection[];
+  sections!: SimpleSection[];
   
   selectedSection!: SimpleSection;
 
   sectionSubscription: Subscription | undefined;
 
-  constructor(private sectionService: SectionService){}
+  projectSubscription: Subscription | undefined;
+
+  constructor(private sectionService: SectionService, private projectService: ProjectService){}
   
   
   ngOnInit(): void {
-    this.sectionSubscription = this.sectionService.section$.subscribe(section => {
-      this.selectedSection = {
-        uuid: section.uuid,
-        title: section.title,
-        description: section.description
-      };  
-    })
+    this.subscribeProject();
+    this.subscribeSection();
   }
 
 
@@ -41,6 +39,22 @@ export class ProjectSectionHeaderComponent implements OnInit{
 
   buttonCLick(){
     this.sectionService.addListToCurrentSection("New List").subscribe();
+  }
+
+  subscribeSection(){
+    this.sectionSubscription = this.sectionService.section$.subscribe(section => {
+      this.selectedSection = {
+        uuid: section.uuid,
+        title: section.title,
+        description: section.description
+      };  
+    })
+  }
+
+  subscribeProject(){
+    this.projectSubscription = this.projectService.project$.subscribe(project => {
+      this.sections = project.sections;
+    })
   }
 
 

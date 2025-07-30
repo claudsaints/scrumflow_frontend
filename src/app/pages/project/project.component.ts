@@ -22,27 +22,14 @@ import { Subscription } from 'rxjs';
   styleUrl: './project.component.css',
 })
 export class ProjectComponent implements OnInit {
-  project: Project = {
-    id: 0,
-    uuid: "",
-    title: '',
-    description: '',
-    create_at: '',
-    owner: {
-      email: '',
-      name: '',
-    },
-    members: [],
-    labels: [],
-    sections: [{uuid: "", title: "", description: ""}],
-    sprints_ids: [],
-  };
+
 
 
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private sectionService: SectionService  ) {}
+    private sectionService: SectionService  
+  ) {}
 
   ngOnInit(): void {
     this.setProject();
@@ -51,7 +38,6 @@ export class ProjectComponent implements OnInit {
   setProject(): void {
     const uuid = String(this.route.snapshot.paramMap.get('id'));
     this.projectService.findProjectById(uuid).subscribe((p) => {
-      this.project = p;
       this.sectionService.findSectionById(p.sections[0].uuid).subscribe({
       next: () => console.log(`Seção carregada com sucesso.`),
       error: (err) => console.error(err)
