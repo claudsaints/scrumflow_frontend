@@ -20,7 +20,7 @@ export class ListService extends HttpModelService {
   }
 
   updatePosition(sectionId: string, listId: string, newPosition: number):Observable<List>{
-    return this.http.put<List>(`${this.serverUrl}sectionId=${sectionId}&listId=${listId}&newPos=${newPosition}`, {});
+    return this.http.put<List>(`${this.serverUrl}?sectionId=${sectionId}&listId=${listId}&newPos=${newPosition}`, {});
   }
 
   updateTitle(listId: string, title: string): Observable<List>{

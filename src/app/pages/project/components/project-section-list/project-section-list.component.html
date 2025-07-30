@@ -1,5 +1,17 @@
-<div class="list-container" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
-  @for(item of lists; track $index){
+<div style="display: flex; flex-direction: column">
+  <div class="button-container">
+    <p-button (click)="moveLeft()">Left</p-button>
+    <p-button (click)="moveRight()">Right</p-button>
+  </div>
+  <div
+    #nav
+    class="list-container"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event)"
+  >
+    @for(item of lists; track $index){
     <app-project-list-card [listData]="item" cdkDrag />
-  }
+    }
+  </div>
 </div>

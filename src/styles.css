@@ -229,19 +229,20 @@ Projects && Home Screens
 }
 
 .section-header{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding-inline: 100px;
-    width: 100%;
-    height: 200px;
-    border-bottom: 2px solid;
-    border-color: var(--gray-content);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 100px;
+  width: 100%;
+  height: 200px;
+  border-bottom: 2px solid;
+  border-color: var(--gray-content);
 }
+
 .p-dialog-title {
-    white-space: nowrap; /* Impede que o texto quebre para a próxima linha */
-    overflow: hidden;    /* Esconde qualquer texto que ultrapasse o contêiner */
-    text-overflow: ellipsis; /* Adiciona reticências (...) para o texto cortado */
-    max-width: 300px; /* Defina uma largura máxima para o título, ajuste conforme necessário */
+    white-space: nowrap; 
+    overflow: hidden;   
+    text-overflow: ellipsis; 
+    max-width: 300px;
 }
