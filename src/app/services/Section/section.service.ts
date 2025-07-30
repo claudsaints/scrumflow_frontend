@@ -45,6 +45,10 @@ export class SectionService extends HttpModelService {
       })
     );
   }
+
+  reloadSection(): Observable<Section>{
+    return this.findSectionById(this._section.value.uuid);
+  }
   
   setCurrentSection(section: Section): void {
     this._section.next(section);

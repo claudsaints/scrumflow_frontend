@@ -65,7 +65,7 @@ export class ProjectHeaderComponent implements OnInit {
       .subscribe({
         next: () => {
           this.projectService.findProjectById(this.projectId).subscribe();
-          this.isCreateSectionVisible = false;
+          this.dialogData.visible = false;
         },
         error(err) {
           console.error(err);

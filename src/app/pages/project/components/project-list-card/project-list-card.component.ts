@@ -11,21 +11,34 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SectionService } from '../../../../services/Section/section.service';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { FormsModule } from '@angular/forms';
-import { DialogComponent, IDialog } from "../../../../shared/components/dialog/dialog.component";
+import {
+  DialogComponent,
+  IDialog,
+} from '../../../../shared/components/dialog/dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project-list-card',
-  imports: [Button, DialogModule, CommonModule, CardComponent, MenuModule, InputTextModule, IftaLabelModule, FormsModule, DialogComponent],
+  imports: [
+    Button,
+    DialogModule,
+    CommonModule,
+    CardComponent,
+    MenuModule,
+    InputTextModule,
+    IftaLabelModule,
+    FormsModule,
+    DialogComponent,
+  ],
   templateUrl: './project-list-card.component.html',
   styleUrl: './project-list-card.component.css',
 })
 export class ProjectListCardComponent implements OnInit {
-  
   loading: boolean = false;
 
   @Input() listData: List = {
     id: 0,
-    uuid: "",
+    uuid: '',
     title: '',
     position: 0,
     cardList: [],
@@ -34,42 +47,40 @@ export class ProjectListCardComponent implements OnInit {
 
   newCardDialogData: IDialog = {
     header: `Add new Card - `,
-    goButtonLabel: "Add",
-    inputId: "card",
-    inputLabel: "Card Name",
-    inputModel: "",
-    returnButtonLabel: "Cancel",
-    visible: false
-  }
+    goButtonLabel: 'Add',
+    inputId: 'card',
+    inputLabel: 'Card Name',
+    inputModel: '',
+    returnButtonLabel: 'Cancel',
+    visible: false,
+  };
 
   editListDialogData: IDialog = {
     header: `Edit List - `,
-    goButtonLabel: "Update",
-    inputId: "listEdit",
-    inputLabel: "Title",
-    inputModel: "",
-    returnButtonLabel: "Cancel",
-    visible: false
-  }
-  
-  
+    goButtonLabel: 'Update',
+    inputId: 'listEdit',
+    inputLabel: 'Title',
+    inputModel: '',
+    returnButtonLabel: 'Cancel',
+    visible: false,
+  };
 
   items: MenuItem[] = [
-    { 
-      id: 'edit_list', 
-      label: 'Edit', 
-      icon: 'pi pi-pen-to-square' ,
-      command: () => this.showEditListDialog()
+    {
+      id: 'edit_list',
+      label: 'Edit',
+      icon: 'pi pi-pen-to-square',
+      command: () => this.showEditListDialog(),
     },
     {
       id: 'delete_list',
       label: 'Delete',
       icon: 'pi pi-trash',
       command: () => this.onDeleteList(),
-      styleClass: "deleteOption",
+      styleClass: 'deleteOption',
       iconStyle: {
-        color: "red"
-      }
+        color: 'red',
+      },
     },
   ];
 
@@ -77,28 +88,46 @@ export class ProjectListCardComponent implements OnInit {
 
   selectedCard: Card | null = null;
 
-  constructor(private listService: ListService, private sectionService: SectionService) {}
-  
+  sectionSubscription: Subscription | undefined;
+
+  constructor(
+    private listService: ListService,
+    private sectionService: SectionService
+  ) {}
+
   ngOnInit(): void {
     this.newCardDialogData.header += this.listData.title;
     this.editListDialogData.header += this.listData.title;
   }
- 
 
-  onEditList(){
-    //TODO 
+  onEditList() {
+    this.loading = true;
+
+    this.listService
+      .updateTitle(this.listData.uuid, this.editListDialogData.inputModel)
+      .subscribe({
+        next: () => {
+          this.sectionService.reloadSection().subscribe();
+        },
+        //TODO: ADD TOAST FOR ERROR
+        complete: () => {
+          this.loading = false;
+          this.editListDialogData.visible = false;
+        },
+      });
   }
 
   onDeleteList() {
-    this.sectionService.deleteListFromCurrentSection(this.listData.uuid).subscribe();
+    this.sectionService
+      .deleteListFromCurrentSection(this.listData.uuid)
+      .subscribe();
   }
 
-
-  showCreateCardDialog(){
+  showCreateCardDialog() {
     this.newCardDialogData.visible = true;
   }
 
-  showEditListDialog(){
+  showEditListDialog() {
     this.editListDialogData.visible = true;
   }
 
@@ -111,5 +140,4 @@ export class ProjectListCardComponent implements OnInit {
     this.cardDialogVisible = false;
     this.selectedCard = null;
   }
-
 }

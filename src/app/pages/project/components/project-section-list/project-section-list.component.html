@@ -1,6 +1,5 @@
-  <drag-scroll class="list-container">
-    @for(item of lists; track $index){
-      <app-project-list-card [listData]="item"  />
-    }
-  </drag-scroll>
-
+<div class="list-container" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+  @for(item of lists; track $index){
+    <app-project-list-card [listData]="item" cdkDrag />
+  }
+</div>
