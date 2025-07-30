@@ -16,7 +16,6 @@ import { IDialog, DialogComponent } from '../../../../shared/components/dialog/d
     ButtonModule,
     RouterModule,
     DialogModule,
-    IftaLabel,
     InputTextModule,
     IftaLabelModule,
     FormsModule,

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Card, List } from '../../../../types';
 import { Button } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
@@ -11,14 +11,18 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SectionService } from '../../../../services/Section/section.service';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { FormsModule } from '@angular/forms';
+import { DialogComponent, IDialog } from "../../../../shared/components/dialog/dialog.component";
 
 @Component({
   selector: 'app-project-list-card',
-  imports: [Button, DialogModule, CommonModule, CardComponent, MenuModule,InputTextModule, IftaLabelModule, FormsModule],
+  imports: [Button, DialogModule, CommonModule, CardComponent, MenuModule, InputTextModule, IftaLabelModule, FormsModule, DialogComponent],
   templateUrl: './project-list-card.component.html',
   styleUrl: './project-list-card.component.css',
 })
-export class ProjectListCardComponent {
+export class ProjectListCardComponent implements OnInit {
+  
+  loading: boolean = false;
+
   @Input() listData: List = {
     id: 0,
     uuid: "",
@@ -28,11 +32,27 @@ export class ProjectListCardComponent {
     create_at: '',
   };
 
-  loading: boolean = false;
+  newCardDialogData: IDialog = {
+    header: `Add new Card - `,
+    goButtonLabel: "Add",
+    inputId: "card",
+    inputLabel: "Card Name",
+    inputModel: "",
+    returnButtonLabel: "Cancel",
+    visible: false
+  }
 
-  isCreateCardVisible: boolean = false;
-
-  isEditLabelVisible: boolean = false;
+  editListDialogData: IDialog = {
+    header: `Edit List - `,
+    goButtonLabel: "Update",
+    inputId: "listEdit",
+    inputLabel: "Title",
+    inputModel: "",
+    returnButtonLabel: "Cancel",
+    visible: false
+  }
+  
+  
 
   items: MenuItem[] = [
     { 
@@ -54,13 +74,16 @@ export class ProjectListCardComponent {
   ];
 
   cardDialogVisible = false;
+
   selectedCard: Card | null = null;
 
   constructor(private listService: ListService, private sectionService: SectionService) {}
   
-  showEditListDialog(){
-    this.isEditLabelVisible = true;
+  ngOnInit(): void {
+    this.newCardDialogData.header += this.listData.title;
+    this.editListDialogData.header += this.listData.title;
   }
+ 
 
   onEditList(){
     //TODO 
@@ -72,9 +95,12 @@ export class ProjectListCardComponent {
 
 
   showCreateCardDialog(){
-    this.isCreateCardVisible = true;
+    this.newCardDialogData.visible = true;
   }
 
+  showEditListDialog(){
+    this.editListDialogData.visible = true;
+  }
 
   openCardDialog(card: Card) {
     this.selectedCard = card;

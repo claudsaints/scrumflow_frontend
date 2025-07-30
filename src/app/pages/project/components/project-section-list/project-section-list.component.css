@@ -12,6 +12,7 @@
     overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    z-index: 1;
 }
 
 .list-container::-webkit-scrollbar {

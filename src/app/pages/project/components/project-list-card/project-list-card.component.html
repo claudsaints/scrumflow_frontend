@@ -21,24 +21,7 @@
     />
 </div>
 
-<p-dialog header="Add new card - {{listData.title}}" [modal]="true" [(visible)]="isCreateCardVisible" [style]="{ width: '25rem' }">
-    <p-iftalabel style="margin-bottom: 2rem;">
-        <input pInputText id="name"  style="width: 100%;" />
-        <label for="list-title">Card Name</label>
-    </p-iftalabel>
-    <div class="flex justify-end gap-2">
-        <p-button label="Cancel" variant="text" severity="danger"  (click)="isCreateCardVisible = false" />
-        <p-button label="Add" (click)="isCreateCardVisible = false" />
-    </div>
-</p-dialog>
+<app-dialog  [data]="newCardDialogData" [loading]="loading" (setButtonAction)="closeCardDialog()"/>
 
-<p-dialog header="Edit List - {{listData.title}}" [modal]="true" [(visible)]="isEditLabelVisible" [style]="{ width: '25rem' }">
-    <p-iftalabel style="margin-bottom: 2rem;">
-        <input pInputText id="list-title"  [value]="listData.title" style="width: 100%;" />
-        <label for="list-title">Title</label>
-    </p-iftalabel>
-    <div class="flex justify-end gap-2">
-        <p-button label="Cancel" variant="text" severity="danger"  (click)="isEditLabelVisible = false" />
-        <p-button label="Update" (click)="onEditList()" />
-    </div>
-</p-dialog>
+<app-dialog  [data]="editListDialogData" [loading]="loading" (setButtonAction)="onEditList()"/>
+
