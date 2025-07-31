@@ -43,6 +43,16 @@ export interface Card {
   end_at: string;
   type: CardType;
   story_point: number;
+  labels: number[];
+}
+
+export interface UpdateCardDto{
+  title: string;
+  description: string;
+  start_at: string;
+  end_at: string;
+  type: CardType;
+  story_point: number;
   labels: Label[];
 }
 
