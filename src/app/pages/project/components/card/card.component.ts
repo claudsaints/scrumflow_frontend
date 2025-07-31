@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { CardService } from '../../../../services/Card/card.service';
+import { Card, UpdateCardDto } from '../../../../types';
 
 @Component({
   selector: 'app-card',
@@ -14,7 +16,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
   styleUrl: './card.component.css'
 })
 export class CardComponent {
-  @Input() card: any;
+  @Input() card!: Card;
   @Input() visible: boolean = false;
   @Input() onClose: (() => void) | undefined;
 
@@ -28,8 +30,10 @@ export class CardComponent {
     { label: '8', value: 8 , imgSrc: '/8_poker.png'},
     { label: '13', value: 13 , imgSrc: '/13_poker.png'},
     { label: '21', value: 21, imgSrc: '/21_poker.png' },
-    { label: '?', value: '?', imgSrc: '/java_poker.png' }
+    { label: '?', value: 0, imgSrc: '/java_poker.png' }
   ];
+
+  constructor(private cardService: CardService){}
 
   ngOnInit() {
     this.isMobile = window.innerWidth <= 600;
@@ -43,7 +47,25 @@ export class CardComponent {
   }
 
   saveCard() {
-    console.log('Card saved:', this.card);
-    this.closeDialog();
+    //TODO REVISAR    
+
+    let updatedCard:UpdateCardDto = {
+      ...this.card,
+      storyPoint: this.card.story_point,
+      startAt: new Date(this.card.start_at).toISOString(),
+      endAt: new Date(this.card.end_at).toISOString(),
+      labels: []
+    }
+
+    this.cardService.update(this.card.uuid, updatedCard).subscribe({
+      next: (card) => {
+        this.card = card;
+      },
+      complete: () => {
+        this.closeDialog();
+      },
+    });
+
+    
   }
 }

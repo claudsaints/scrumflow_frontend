@@ -9,13 +9,14 @@
       <textarea [(ngModel)]="card.description" class="popup-desc" placeholder="Descrição..."></textarea>
       <div class="popup-row">
         <span>Cor:</span>
-        <input pColorPicker [(ngModel)]="card.color" [style.width.px]="32" [style.height.px]="32" />
+        <input pColorPicker  [style.width.px]="32" [style.height.px]="32" />
       </div>
+      
       <div class="popup-row date-row">
         <span>Início:</span>
-        <input pInputText type="date" [(ngModel)]="card.startDate" style="flex:1;" />
+        <input pInputText type="date" [value]="card.start_at" [(ngModel)]="card.start_at" style="flex:1;" />
         <span >Término:</span>
-        <input pInputText type="date" [(ngModel)]="card.endDate" style="flex:1;" />
+        <input pInputText type="date" [value]="card.end_at" [(ngModel)]="card.end_at" style="flex:1;" />
       </div>
       <div class="popup-row" style="flex-direction:column;align-items:flex-start;">
         <span>Poker Planning:</span>
@@ -24,21 +25,20 @@
             <img 
               [src]="item.imgSrc" 
               [alt]="item.label" 
-              [class.selected]="card.pokerValue === item.value"
-              (click)="card.pokerValue = item.value"
+              [class.selected]="card.story_point === item.value"
+              (click)="card.story_point = item.value"
             />
           }
         </div>
       </div>
-      <button 
-        pButton 
+      <p-button
         type="button" 
         severity="primary"
         icon="pi pi-check"
         label="Salvar"
         class="p-button-lg width-full"
         (click)="saveCard()">
-      </button>
+      </p-button>
     </div>
     </div>
 

@@ -33,7 +33,7 @@
         min-height: 0px;
         justify-content: space-around;
         gap: 2px;
-        bottom: 1px;
+        bottom: 0px;
         flex-direction: row;
         z-index: 2;
 

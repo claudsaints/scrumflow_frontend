@@ -17,6 +17,11 @@ import {
 } from '../../../../shared/components/dialog/dialog.component';
 import { Subscription } from 'rxjs';
 import { DragControlService } from '../../../../services/Drag/drag-control.service';
+import { CardService } from '../../../../services/Card/card.service';
+
+
+
+//TODO: Clear class
 
 @Component({
   selector: 'app-project-list-card',
@@ -94,7 +99,8 @@ export class ProjectListCardComponent implements OnInit {
   constructor(
     private listService: ListService,
     private sectionService: SectionService,
-    private dragService: DragControlService
+    private dragService: DragControlService,
+    private cardService: CardService
   ) {}
 
   ngOnInit(): void {
@@ -125,6 +131,20 @@ export class ProjectListCardComponent implements OnInit {
 
   showCreateCardDialog() {
     this.newCardDialogData.visible = true;
+  }
+
+  createNewCard() {
+    this.cardService
+      .create(this.listData.uuid, this.newCardDialogData.inputModel)
+      .subscribe({
+        next: (card) => {
+          this.listData.cardList.push(card);
+        },
+        complete: () => {
+          this.loading = false;
+          this.newCardDialogData.visible = false;
+        },
+      });
   }
 
   showEditListDialog() {
