@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { ButtonModule } from 'primeng/button';
-import { Section, SimpleSection } from '../../../../types';
+import { SimpleSection } from '../../../../types';
 import { SelectModule } from 'primeng/select';
 import { SectionService } from '../../../../services/Section/section.service';
 import { Subscription } from 'rxjs';

@@ -6,6 +6,8 @@
     flex-shrink: 0;
 }
 
+
+
 .default-card:hover{
     cursor: pointer;
 }

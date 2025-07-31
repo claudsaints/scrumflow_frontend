@@ -8,7 +8,6 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CardService } from '../../../../services/Card/card.service';
 import { Card, UpdateCardDto } from '../../../../types';
-
 @Component({
   selector: 'app-card',
   imports: [DialogModule, ButtonModule, CommonModule, FormsModule, InputTextModule, ColorPickerModule, SelectButtonModule],
@@ -16,7 +15,7 @@ import { Card, UpdateCardDto } from '../../../../types';
   styleUrl: './card.component.css'
 })
 export class CardComponent {
-  @Input() card!: Card;
+  @Input() card: Card = {} as Card;
   @Input() visible: boolean = false;
   @Input() onClose: (() => void) | undefined;
 

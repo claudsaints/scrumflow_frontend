@@ -42,14 +42,7 @@ import { CardService } from '../../../../services/Card/card.service';
 export class ProjectListCardComponent implements OnInit {
   loading: boolean = false;
 
-  @Input() listData: List = {
-    id: 0,
-    uuid: '',
-    title: '',
-    position: 0,
-    cardList: [],
-    create_at: '',
-  };
+  @Input() listData: List = {} as List;
 
   newCardDialogData: IDialog = {
     header: `Add new Card`,
@@ -92,7 +85,8 @@ export class ProjectListCardComponent implements OnInit {
 
   cardDialogVisible = false;
 
-  selectedCard: Card | null = null;
+  //Verify
+  selectedCard: Card = {} as Card ;
 
   sectionSubscription: Subscription | undefined;
 
@@ -160,6 +154,6 @@ export class ProjectListCardComponent implements OnInit {
   closeCardDialog() {
     this.dragService.setDragDisabled(false);
     this.cardDialogVisible = false;
-    this.selectedCard = null;
+    this.selectedCard = {} as Card;
   }
 }

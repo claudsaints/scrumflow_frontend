@@ -15,6 +15,7 @@ export class ProjectService extends HttpModelService {
     title: '',
     description: '',
     create_at: '',
+    backgroundImage: '',
     owner: {
       email: '',
       name: '',

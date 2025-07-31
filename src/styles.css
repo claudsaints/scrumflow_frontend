@@ -213,6 +213,8 @@ Projects && Home Screens
 .home-container {
     display: flex;
     flex-direction: column;
+    background-size: cover;
+    background-position: center;
     flex: 1 1 auto;
     min-height: 0;
     width: 100%;

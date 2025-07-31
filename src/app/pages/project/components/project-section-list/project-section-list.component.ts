@@ -19,16 +19,7 @@ import { DragControlService } from '../../../../services/Drag/drag-control.servi
   styleUrl: './project-section-list.component.css',
 })
 export class ProjectSectionListComponent implements OnInit {
-  @Input() lists: List[] = [
-    {
-      id: 0,
-      uuid: '',
-      cardList: [],
-      create_at: '',
-      position: 0,
-      title: '',
-    },
-  ];
+  @Input() lists: List[] = [] as List[];
 
   @ViewChild('nav') listContainer!: ElementRef;
 

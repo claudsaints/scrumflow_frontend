@@ -2,15 +2,26 @@
     flex: 0;
 }
 
+.title {
+    padding-top: 2rem;
+    margin-left: 6.2rem;
+    color: var(--gray-content);
+    font-weight: bold;
+
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
 .section-header {
     padding-left: 60px;
 }
 
 
 @media (max-width: 1024px) {
-  
+    .title{
+        margin: 0px;
+        align-self: center;
+        text-align: center;
+    }
 }
 
-@media (max-width: 768px) {
-  
-}
+@media (max-width: 768px) {}

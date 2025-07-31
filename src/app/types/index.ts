@@ -104,7 +104,7 @@ export interface Project {
     description: string;
   }];
   sprints_ids: number[];
-  background_image_url?: string;
+  backgroundImage?: string;
 }
 
 type ProjectDTO  = {

@@ -6,6 +6,7 @@ import { ProjectSectionListComponent } from './components/project-section-list/p
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../services/Project/project.service';
 import { SectionService } from '../../services/Section/section.service';
+import { Section } from '../../types';
 
 @Component({
   selector: 'app-project',
@@ -19,13 +20,14 @@ import { SectionService } from '../../services/Section/section.service';
   styleUrl: './project.component.css',
 })
 export class ProjectComponent implements OnInit {
+  backgroundImageUrl: string | undefined = '';
 
-
+  projectTitle: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private sectionService: SectionService  
+    private sectionService: SectionService
   ) {}
 
   ngOnInit(): void {
@@ -35,12 +37,18 @@ export class ProjectComponent implements OnInit {
   setProject(): void {
     const uuid = String(this.route.snapshot.paramMap.get('id'));
     this.projectService.findProjectById(uuid).subscribe((p) => {
+
+      this.backgroundImageUrl = p.backgroundImage;
+
+      this.projectTitle = p.title;
+      
+      p.sections[0] ? 
       this.sectionService.findSectionById(p.sections[0].uuid).subscribe({
-      next: () => console.log(`Seção carregada com sucesso.`),
-      error: (err) => console.error(err)
-    });
+        next: () => console.log(`Seção carregada com sucesso.`),
+        error: (err) => console.error(err),
+      })
+      : this.sectionService.setCurrentSection({} as Section);
+
     });
   }
-
-
 }

@@ -1,3 +1,7 @@
 h1:hover{
     cursor: pointer;
 }
+h1{
+    font-size: x-large;
+    padding: 1rem;
+}
