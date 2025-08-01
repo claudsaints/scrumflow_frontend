@@ -18,10 +18,7 @@ import {
 import { Subscription } from 'rxjs';
 import { DragControlService } from '../../../../services/Drag/drag-control.service';
 import { CardService } from '../../../../services/Card/card.service';
-
-
-
-//TODO: Clear class
+import { ProjectListCardBase } from './project-list-card-base';
 
 @Component({
   selector: 'app-project-list-card',
@@ -39,63 +36,17 @@ import { CardService } from '../../../../services/Card/card.service';
   templateUrl: './project-list-card.component.html',
   styleUrl: './project-list-card.component.css',
 })
-export class ProjectListCardComponent implements OnInit {
-  loading: boolean = false;
-
+export class ProjectListCardComponent extends ProjectListCardBase implements OnInit{
   @Input() listData: List = {} as List;
-
-  newCardDialogData: IDialog = {
-    header: `Add new Card`,
-    goButtonLabel: 'Add',
-    inputId: 'card',
-    inputLabel: 'Card Name',
-    inputModel: '',
-    returnButtonLabel: 'Cancel',
-    visible: false,
-  };
-
-  editListDialogData: IDialog = {
-    header: `Edit List`,
-    goButtonLabel: 'Update',
-    inputId: 'listEdit',
-    inputLabel: 'Title',
-    inputModel: '',
-    returnButtonLabel: 'Cancel',
-    visible: false,
-  };
-
-  items: MenuItem[] = [
-    {
-      id: 'edit_list',
-      label: 'Edit',
-      icon: 'pi pi-pen-to-square',
-      command: () => this.showEditListDialog(),
-    },
-    {
-      id: 'delete_list',
-      label: 'Delete',
-      icon: 'pi pi-trash',
-      command: () => this.onDeleteList(),
-      styleClass: 'deleteOption',
-      iconStyle: {
-        color: 'red',
-      },
-    },
-  ];
-
-  cardDialogVisible = false;
-
-  //Verify
-  selectedCard: Card = {} as Card ;
-
-  sectionSubscription: Subscription | undefined;
 
   constructor(
     private listService: ListService,
     private sectionService: SectionService,
     private dragService: DragControlService,
     private cardService: CardService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.sectionSubscription = this.sectionService.section$.subscribe();
@@ -117,14 +68,18 @@ export class ProjectListCardComponent implements OnInit {
       });
   }
 
-  onDeleteList() {
+  showCreateCardDialog() {
+    this.newCardDialogData.visible = true;
+  }
+  
+  override onDeleteList() {
     this.sectionService
       .deleteListFromCurrentSection(this.listData.uuid)
       .subscribe();
   }
-
-  showCreateCardDialog() {
-    this.newCardDialogData.visible = true;
+  
+  override showEditListDialog() {
+    this.editListDialogData.visible = true;
   }
 
   createNewCard() {
@@ -139,10 +94,6 @@ export class ProjectListCardComponent implements OnInit {
           this.newCardDialogData.visible = false;
         },
       });
-  }
-
-  showEditListDialog() {
-    this.editListDialogData.visible = true;
   }
 
   openCardDialog(card: Card) {

@@ -5,18 +5,18 @@
   <div class="popup-content" [ngStyle]="popupStyle">
     <button class="close-btn" (click)="closeDialog()" aria-label="Fechar">&#10005;</button>
     <div class="popup-scroll">
-      <input [(ngModel)]="card.title" class="popup-title" placeholder="Título do card" />
-      <textarea [(ngModel)]="card.description" class="popup-desc" placeholder="Descrição..."></textarea>
+      <input [id]="'card-title-' + card.uuid" [(ngModel)]="card.title" class="popup-title" placeholder="Título do card" />
+      <textarea [id]="'card-desc' + card.uuid" [(ngModel)]="card.description" class="popup-desc" placeholder="Descrição..."></textarea>
       <div class="popup-row">
         <span>Cor:</span>
-        <input type="color"  [style.width.px]="32" [style.height.px]="32" />
+        <input [id]="'card-color' + card.uuid" type="color"  [style.width.px]="32" [style.height.px]="32" />
       </div>
       
       <div class="popup-row date-row">
         <span>Início:</span>
-        <input pInputText type="date" [value]="card.start_at" [(ngModel)]="card.start_at" style="flex:1;" />
+        <input pInputText [id]="'card-start-' + card.uuid" type="date" [value]="card.start_at" [(ngModel)]="card.start_at" style="flex:1;" />
         <span >Término:</span>
-        <input pInputText type="date" [value]="card.end_at" [(ngModel)]="card.end_at" style="flex:1;" />
+        <input pInputText [id]="'card-end-' + card.uuid" type="date" [value]="card.end_at" [(ngModel)]="card.end_at" style="flex:1;" />
       </div>
       <div class="popup-row" style="flex-direction:column;align-items:flex-start;">
         <span>Poker Planning:</span>
