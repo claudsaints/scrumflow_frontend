@@ -1,5 +1,5 @@
 <div class="default-card project-list"  >
-    <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+    <div class="list-header">
         <h3 style="flex:1; margin:0;">{{listData.title}}</h3>
         <p-menu #menu [model]="items" [popup]="true"  c/>
         <p-button (click)="menu.toggle($event)" variant="text" severity="primary" icon="pi pi-ellipsis-v" />
@@ -7,16 +7,16 @@
 
     <div class="card-list">
         @for (item of listData.cardList; track $index) {
-            <div class="card-item" (click)="openCardDialog(item)">
-                <span>{{item.title}}</span>
-            </div>
+           <app-project-card [card]="item" (click)="openCardDialog(item)" />
         }
     </div>
 
-    <app-card [card]="selectedCard" [visible]="cardDialogVisible" [onClose]="closeCardDialog.bind(this)"></app-card>
+    <app-project-card-pop-up [card]="selectedCard" [visible]="cardDialogVisible" [onClose]="closeCardDialog.bind(this)" />
 
-    <p-button pRipple type="button" severity="primary" variant="text" icon="pi pi-plus" label="Adicionar card" 
-        class="p-button-text p-button-sm"
+
+
+    <p-button  pRipple type="button" severity="contrast" variant="text" icon="pi pi-plus" label="Adicionar card" 
+        class="p-button-text p-button-sm button-add-card"
         (onClick)="showCreateCardDialog()"
     />
 </div>

@@ -16,10 +16,11 @@
 
 
 ::ng-deep .is-active .p-button-icon{
-    background-color: hsl(184, 40%, 47%);
+    background-color: rgb(204, 236, 255);
     border-radius: 3rem;
     border: 8px solid;
-    border-color: hsl(184, 40%, 47%);
+    border-width: 6px 14px 6px 14px;
+    border-color: rgb(204, 236, 255);
 }
 
 

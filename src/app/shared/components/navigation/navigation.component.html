@@ -1,6 +1,5 @@
 <!-- Sidebar lateral (desktop) -->
 <div class="sidebar">
-  <p-button  label="Profile" icon="pi pi-user" iconPos="top" variant="text" severity="contrast"></p-button>
   <p-button [routerLink]="['/home']" [routerLinkActive]="['is-active']"  label="Home" icon="pi pi-home" iconPos="top" variant="text" severity="contrast"></p-button>
   @if (isOnProject) {
     <p-button  [routerLink]="[`/project/${projectId}`]" [routerLinkActive]="['is-active']"  label="General" icon="pi pi-list" iconPos="top" variant="text" severity="contrast"></p-button>

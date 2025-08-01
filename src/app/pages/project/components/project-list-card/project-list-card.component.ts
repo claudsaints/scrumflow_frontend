@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Card, List } from '../../../../types';
 import { Button } from 'primeng/button';
-import { MenuItem } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { CommonModule } from '@angular/common';
-import { CardComponent } from '../card/card.component';
 import { MenuModule } from 'primeng/menu';
 import { ListService } from '../../../../services/List/list.service';
 import { InputTextModule } from 'primeng/inputtext';
@@ -13,12 +11,12 @@ import { IftaLabelModule } from 'primeng/iftalabel';
 import { FormsModule } from '@angular/forms';
 import {
   DialogComponent,
-  IDialog,
 } from '../../../../shared/components/dialog/dialog.component';
-import { Subscription } from 'rxjs';
 import { DragControlService } from '../../../../services/Drag/drag-control.service';
 import { CardService } from '../../../../services/Card/card.service';
 import { ProjectListCardBase } from './project-list-card-base';
+import { ProjectCardComponent } from '../../../../shared/components/project-card/project-card.component';
+import { ProjectCardPopUpComponent } from "../../../../shared/components/project-card-pop-up/project-card-pop-up.component";
 
 @Component({
   selector: 'app-project-list-card',
@@ -26,17 +24,21 @@ import { ProjectListCardBase } from './project-list-card-base';
     Button,
     DialogModule,
     CommonModule,
-    CardComponent,
     MenuModule,
     InputTextModule,
     IftaLabelModule,
     FormsModule,
     DialogComponent,
-  ],
+    ProjectCardComponent,
+    ProjectCardPopUpComponent
+],
   templateUrl: './project-list-card.component.html',
   styleUrl: './project-list-card.component.css',
 })
-export class ProjectListCardComponent extends ProjectListCardBase implements OnInit{
+export class ProjectListCardComponent
+  extends ProjectListCardBase
+  implements OnInit
+{
   @Input() listData: List = {} as List;
 
   constructor(
@@ -71,13 +73,13 @@ export class ProjectListCardComponent extends ProjectListCardBase implements OnI
   showCreateCardDialog() {
     this.newCardDialogData.visible = true;
   }
-  
+
   override onDeleteList() {
     this.sectionService
       .deleteListFromCurrentSection(this.listData.uuid)
       .subscribe();
   }
-  
+
   override showEditListDialog() {
     this.editListDialogData.visible = true;
   }
