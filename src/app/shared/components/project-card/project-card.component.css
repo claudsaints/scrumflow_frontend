@@ -26,10 +26,12 @@
     cursor: pointer;
     transition: box-shadow 0.2s;
     border: none;
-    min-height: 161px;
+    min-height: 130px;
+    
     display: flex;
     align-items: flex-start;
     word-break: break-word;
+    transition: opacity 0.3s ease;
 }
 
 .card-item:hover {

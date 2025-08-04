@@ -1,125 +1,35 @@
+import { Label } from "./card";
+import { CardType } from "./card";
+import { Card } from "./card";
+import { UpdateCardDto } from "./card";
+import { List } from "./list";
+import { ProjectMember } from "./project";
+import { Project } from "./project";
+import { ProjectDTO } from "./project";
+import { Section } from "./section";
+import { SimpleSection } from "./section";
+import { Sprint } from "./sprint";
+import { CreateSprintDTO } from "./sprint";
+import { User } from "./user";
+import { MemberRole } from "./user";
 
 
-export interface User {
-  name: string;
-  email: string;
-}
-
-export enum MemberRole {
-  OWNER = "OWNER",
-  MEMBER = "MEMBER",
-}
-
-export interface ProjectMember {
-  role: MemberRole;
-  user: User;
-  join_at: string;
-}
-
-export interface Label {
-  id: number;
-  name: string;
-  color: string;
-  cards: string[];
-}
-
-export enum CardType {
-  FEATURE = "FEATURE",
-  TASK = "TASK",
-  INTEGRATION = "INTEGRATION",
-  CODE_REVIEW = "CODE_REVIEW",
-  SETUP = "SETUP",
-  DOCUMENTATION = "DOCUMENTATION",
-  DESIGN = "DESIGN",
-  BUG = "BUG",
-}
-
-export interface Card {
-  id: number;
-  uuid: string;
-  title: string;
-  description: string;
-  start_at: string;
-  end_at: string;
-  type: CardType;
-  story_point: number;
-  labels: [];
-}
-
-export interface UpdateCardDto{
-  title: string;
-  description: string;
-  startAt: string;
-  endAt: string;
-  type: CardType;
-  storyPoint: number;
-  labels: Label[];
-}
-
-export interface List {
-  uuid: string;
-  id: number;
-  title: string;
-  position: number;
-  create_at: string;
-  cardList: Card[];
-}
-
-export interface Section {
-  id: number;
-  uuid: string;
-  title: string;
-  description: string;
-  lists: List[];
-}
-
-export interface SimpleSection{
-  uuid: string;
-  title:string;
-  description: string;
-}
-
-export interface Sprint {
-  id: number;
-  uuid: string;
-  section: Pick<Section, "id" | "title" | "description" | "lists">;
-  title: string;
-  start_date: string;
-  end_date: string;
-  goal: string;
-}
-
-export interface Project {
-  id: number;
-  uuid: string;
-  title: string;
-  description: string;
-  create_at: string;
-  owner: User;
-  members: ProjectMember[];
-  labels: Label[];
-  sections: [{
-    uuid: string;
-    title: string;
-    description: string;
-  }];
-  sprints_ids: number[];
-  backgroundImage?: string;
-}
-
-type ProjectDTO  = {
-  id: number;
-  uuid: string;
-  title: string;
-  description: string;
-  backgroundImage: string;
-  create_at: string;
-  owner: {
-      name: string;
-      email: string;
-  }
-}
+export {
+  CardType,
+  MemberRole
+};
 
 export type {
-  ProjectDTO
-}
+  Card,
+  Label,
+  UpdateCardDto,
+  List,
+  Project,
+  ProjectDTO,
+  ProjectMember,
+  Section,
+  SimpleSection,
+  Sprint,
+  CreateSprintDTO,
+  User
+};

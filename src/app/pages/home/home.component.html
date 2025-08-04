@@ -14,10 +14,10 @@
 
     <div class="grid-projects">
       @for(item of projects; track $index){
-      <div class="default-card" [routerLink]="[`/project/${item.uuid}`]">
+      <div class="default-card" [routerLink]="[`/project/${item.uuid}`]"  [style]="item.backgroundImage && `backgroundImage: url(${item.backgroundImage});`">
         <div>
           <h3>{{item.title}}</h3>
-          <i></i>
+          <i class="pi pi-square"></i>
         </div>
       </div>
       }
