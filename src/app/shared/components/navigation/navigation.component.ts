@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit {
   
 
   showProjectNavigation():void{
-    const checkRoute = this.router.url.includes("project") ||  this.router.url.includes("config");
+    const checkRoute = this.router.url.includes("general") ||  this.router.url.includes("config");
 
     if (checkRoute){
       this.isOnProject = true;

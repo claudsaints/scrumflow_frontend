@@ -2,60 +2,60 @@ import { definePreset } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 
 const MyPreset = definePreset(Aura, {
-    semantic: {
-        primary: {
-            50: '#e6edf1',
-            100: '#cddbe4',
-            200: '#9ab7c9',
-            300: '#6693ad',
-            400: '#336f92',
-            500: '#103C55',
-            600: '#0d3044',
-            700: '#0a2433',
-            800: '#061822',
-            900: '#030c11',
-            950: '#010508'
-        },
-        colorScheme: {
-            light: {
-                primary: {
-                    color: '#103C55',
-                    hoverColor: '#0b2c3f',
-                    activeColor: '#336f92'
-                },
-                highlight: {
-                    background: '#103C55',
-                    focusBackground: '#3C9FA7',
-                    color: '#ffffff',
-                    focusColor: '#ffffff'
-                },
-                text: {
-                    color: '#1a1a1a',
-                    mutedColor: '#f4f4f4'
-                }
-            },
-            dark: {
-                primary: {
-                    color: '#3C9FA7',
-                    hoverColor: '#357e8a',
-                    activeColor: '#2d8e95'
-                },
-                highlight: {
-                    background: 'rgba(60, 159, 167, 0.16)',
-                    focusBackground: 'rgba(60, 159, 167, 0.24)',
-                    color: '#ffffff',
-                    focusColor: '#ffffff'
-                },
-                text: {
-                    color: '#f4f4f4',
-                    mutedColor: '#3C9FA7'
-                }
-            }
-        }
+  semantic: {
+    primary: {
+      50: '#e6edf1',
+      100: '#cddbe4',
+      200: '#9ab7c9',
+      300: '#6693ad',
+      400: '#336f92',
+      500: '#103C55',
+      600: '#0d3044',
+      700: '#0a2433',
+      800: '#061822',
+      900: '#030c11',
+      950: '#010508',
     },
-    components: {
-        button: {
-            css: () => `
+    colorScheme: {
+      light: {
+        primary: {
+          color: '#103C55',
+          hoverColor: '#0b2c3f',
+          activeColor: '#336f92',
+        },
+        highlight: {
+          background: '#103C55',
+          focusBackground: '#3C9FA7',
+          color: '#ffffff',
+          focusColor: '#ffffff',
+        },
+        text: {
+          color: '#1a1a1a',
+          mutedColor: '#f4f4f4',
+        },
+      },
+      dark: {
+        primary: {
+          color: '#3C9FA7',
+          hoverColor: '#357e8a',
+          activeColor: '#2d8e95',
+        },
+        highlight: {
+          background: 'rgba(60, 159, 167, 0.16)',
+          focusBackground: 'rgba(60, 159, 167, 0.24)',
+          color: '#ffffff',
+          focusColor: '#ffffff',
+        },
+        text: {
+          color: '#f4f4f4',
+          mutedColor: '#3C9FA7',
+        },
+      },
+    },
+  },
+  components: {
+    button: {
+      css: () => `
                 .p-button {
                     color: #fff;
                     border: none;
@@ -94,20 +94,32 @@ const MyPreset = definePreset(Aura, {
                     background: var(--secondary-hover);
                     color: #fff;
                 }
-            `
-        },
-        password: {
-            css: () => `
+            `,
+    },
+    password: {
+      css: () => `
                 .p-password{
                     display: block;
                 }
-                    .p-password-mask-icon :hover{
-                        cursor: pointer;
-                    }
-            `
+                .p-password-mask-icon :hover{
+                    cursor: pointer;
+                }
+            `,
+    },
+    breadcrumb: {
+      css: () => `
+            
+                .p-breadcrumb{
+                    background: transparent;
+                }
 
-        }
-    }
+                .p-breadcrumb-item-link{
+                    color: #94a3b8;
+                }
+
+            `,
+    },
+  },
 });
 
 export default MyPreset;

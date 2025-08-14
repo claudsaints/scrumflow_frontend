@@ -1,9 +1,7 @@
 <div class="app-container" >
   <app-navigation></app-navigation>
   <div class="home-container" [style]="backgroundImageUrl && `backgroundImage: url(${backgroundImageUrl});`">
-    <h1 class="title">
-      {{projectTitle}}
-    </h1>
+    <app-bread-crumb />
     <app-project-header/>
     <app-project-section-header />
     <app-project-section-list/>

@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../services/Project/project.service';
 import { SectionService } from '../../services/Section/section.service';
 import { Section } from '../../types';
+import { BreadCrumbComponent } from "../../shared/components/bread-crumb/bread-crumb.component";
 
 @Component({
   selector: 'app-project',
@@ -15,7 +16,8 @@ import { Section } from '../../types';
     ProjectHeaderComponent,
     ProjectSectionHeaderComponent,
     ProjectSectionListComponent,
-  ],
+    BreadCrumbComponent
+],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css',
 })
