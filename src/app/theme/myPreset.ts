@@ -78,11 +78,19 @@ const MyPreset = definePreset(Aura, {
                     cursor: pointer;
                 }
 
+
+
                 .p-button-text.p-button-primary{
                      background: transparent;
                      color: black;
                 }
 
+
+               
+
+                .p-button-text.p-button-contrast:not(:disabled):hover {
+                  background-color: transparent;
+                }
     
                 /* Botão com severity="secondary" */
                 .p-button-secondary {
@@ -114,7 +122,24 @@ const MyPreset = definePreset(Aura, {
                 }
 
                 .p-breadcrumb-item-link{
-                    color: #94a3b8;
+                    color: var(--secondary);
+                    font-weight: light;
+                }
+                .p-breadcrumb-item-link:hover .p-breadcrumb-item-label{
+                    color: rgb(204, 236, 255);
+                    font-weight: light;
+                }
+
+                .p-breadcrumb-item-link:hover .p-breadcrumb-item-icon{
+                    color: rgb(204, 236, 255);
+                    font-weight: light;
+                }
+
+                .p-breadcrumb-separator{
+                    color: var(--secondary);
+                }
+                .p-breadcrumb-item-icon{
+                        color: var(--secondary);
                 }
 
             `,

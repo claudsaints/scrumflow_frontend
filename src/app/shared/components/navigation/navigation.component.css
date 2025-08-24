@@ -5,8 +5,8 @@
     position: relative;
     left: 0;
     width: 5rem;
-    height: 100%;          
-    min-height: 100vh;    
+    height: 100%;
+    min-height: 100vh;
     align-items: center;
     justify-content: flex-start;
     gap: 2rem;
@@ -15,7 +15,7 @@
 }
 
 
-::ng-deep .is-active .p-button-icon{
+::ng-deep .is-active .p-button-icon {
     background-color: rgb(204, 236, 255);
     border-radius: 3rem;
     border: 8px solid;
@@ -28,7 +28,7 @@
 @media (max-width: 1050px) {
     .sidebar {
         position: absolute;
-        height: 8rem; 
+        height: 8rem;
         width: 100%;
         max-block-size: 80px;
         min-height: 0px;
