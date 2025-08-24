@@ -3,11 +3,9 @@
     flex-direction: column;
     min-width: 272px;
     max-width: 290px;
-    width: 290px;
+    width: 280px;
     background: transparent;
-
     margin: 0 8px;
-    padding: 8px 8px 8px 8px;
     flex-shrink: 0;
     align-items: stretch;
     overflow: hidden;
