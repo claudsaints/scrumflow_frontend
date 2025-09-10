@@ -1,8 +1,118 @@
 <div class="app-container">
-    <app-navigation></app-navigation>
-    <div class="home-container">
-            <app-bread-crumb/>
-      <p>members works!</p>
+  <app-navigation></app-navigation>
+  <div class="home-container">
+    <app-bread-crumb />
 
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h1>Team Members</h1>
+          <p class="subtitle">Manage your team and their access</p>
+        </div>
+        <p-button
+          *ngIf="isAdmin"
+          label="Invite Member"
+          icon="pi pi-user-plus"
+          (onClick)="showInviteDialog()"
+          styleClass="p-button-primary"
+        >
+        </p-button>
       </div>
+
+      <div class="members-grid">
+        <div *ngIf="loading" class="member-card skeleton">
+          <div class="member-card-content">
+            <p-skeleton
+              shape="circle"
+              size="4rem"
+              styleClass="mb-2"
+            ></p-skeleton>
+            <div class="member-info">
+              <p-skeleton
+                width="10rem"
+                height="1rem"
+                styleClass="mb-2"
+              ></p-skeleton>
+              <p-skeleton width="8rem" height="1rem"></p-skeleton>
+            </div>
+          </div>
+        </div>
+
+        <div *ngFor="let member of members" class="member-card">
+          <div class="member-card-content">
+            <p-avatar
+              [image]="member.avatar"
+              styleClass="member-avatar"
+              size="large"
+              shape="circle"
+            >
+            </p-avatar>
+            <div class="member-info">
+              <h3>{{ member.name }}</h3>
+              <p>{{ member.email }}</p>
+              <p-tag
+                [value]="member.role"
+                [severity]="getRoleClass(member.role)"
+              >
+              </p-tag>
+            </div>
+          </div>
+          <button
+            *ngIf="isAdmin"
+            pButton
+            icon="pi pi-trash"
+            class="p-button-text p-button-danger"
+            (click)="removeMember(member)"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <p-dialog
+      [(visible)]="visible"
+      [modal]="true"
+      header="Invite New Member"
+      [style]="{ width: '450px' }"
+      [draggable]="false"
+      [resizable]="false"
+    >
+      <form [formGroup]="inviteForm" (ngSubmit)="inviteMember()">
+        <div class="dialog-content">
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              pInputText
+              formControlName="email"
+              placeholder="Enter member's email"
+            />
+          </div>
+          <div class="form-field">
+            <label for="role">Role</label>
+            <p-dropdown
+              id="role"
+              [options]="roles"
+              formControlName="role"
+              placeholder="Select a role"
+              [style]="{ width: '100%' }"
+            >
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <p-button
+            label="Cancel"
+            styleClass="p-button-text"
+            (onClick)="visible = false"
+          >
+          </p-button>
+          <p-button label="Invite" type="submit" [disabled]="!inviteForm.valid">
+          </p-button>
+        </div>
+      </form>
+    </p-dialog>
+
+    <p-toast></p-toast>
+  </div>
 </div>
