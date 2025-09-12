@@ -1,6 +1,126 @@
 <div class="app-container">
   <app-navigation></app-navigation>
   <div class="home-container">
-    <app-bread-crumb/>
+    <app-bread-crumb />
+
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h1>Project Settings</h1>
+          <p class="subtitle">Customize your project appearance and details</p>
+        </div>
+      </div>
+
+      <div class="config-container">
+        <div *ngIf="loading" class="loading-state">
+          <p-skeleton width="100%" height="3rem" styleClass="mb-4"></p-skeleton>
+          <p-skeleton width="100%" height="8rem" styleClass="mb-4"></p-skeleton>
+        </div>
+
+        <form
+          *ngIf="!loading"
+          [formGroup]="projectForm"
+          (ngSubmit)="saveProject()"
+          class="project-form"
+        >
+          <div class="form-section">
+            <h2>Project Details</h2>
+
+            <div class="form-field">
+              <label for="title">Project Title</label>
+              <input
+                id="title"
+                type="text"
+                pInputText
+                formControlName="title"
+                [class.ng-invalid]="
+                  projectForm.get('title')?.invalid &&
+                  projectForm.get('title')?.touched
+                "
+              />
+              <small
+                class="error-message"
+                *ngIf="
+                  projectForm.get('title')?.invalid &&
+                  projectForm.get('title')?.touched
+                "
+              >
+                Title must be at least 3 characters long
+              </small>
+            </div>
+
+            <div class="form-field">
+              <label for="description">Description</label>
+              <textarea
+                id="description"
+                rows="5"
+                pInputTextarea
+                formControlName="description"
+                [class.ng-invalid]="
+                  projectForm.get('description')?.invalid &&
+                  projectForm.get('description')?.touched
+                "
+              >
+              </textarea>
+              <small
+                class="error-message"
+                *ngIf="
+                  projectForm.get('description')?.invalid &&
+                  projectForm.get('description')?.touched
+                "
+              >
+                Description must be at least 10 characters long
+              </small>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2>Background Image</h2>
+            <p class="section-description">
+              Select a background image for your project
+            </p>
+
+            <div
+              class="background-preview"
+              *ngIf="selectedImageUrl"
+              [style.backgroundImage]="'url(' + selectedImageUrl + ')'"
+            ></div>
+
+            <div class="images-grid" *ngIf="!loadingImages">
+              <div
+                *ngFor="let image of backgroundImages"
+                class="image-option"
+                [class.selected]="selectedImageUrl === image.urls.regular"
+                (click)="selectImage(image)"
+                [style.backgroundImage]="'url(' + image.urls.thumb + ')'"
+              ></div>
+            </div>
+
+            <div class="images-grid" *ngIf="loadingImages">
+              <p-skeleton
+                *ngFor="let i of [1, 2, 3, 4]"
+                width="200px"
+                height="120px"
+                styleClass="image-skeleton"
+              >
+              </p-skeleton>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <p-button
+              type="submit"
+              [label]="saving ? 'Saving...' : 'Save Changes'"
+              [disabled]="projectForm.invalid || saving"
+              [loading]="saving"
+              styleClass="p-button-primary"
+            >
+            </p-button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <p-toast></p-toast>
   </div>
 </div>

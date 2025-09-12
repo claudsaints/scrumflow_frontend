@@ -1,0 +1,86 @@
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '450px' }"
+  (onHide)="onClose.emit()"
+>
+  <ng-template pTemplate="header">
+    <h3>{{ selectedSprint ? "Edit Sprint" : "New Sprint" }}</h3>
+  </ng-template>
+
+  <form [formGroup]="form">
+    <div class="field">
+      <label for="title">Title</label>
+      <input
+        pInputText
+        id="title"
+        type="text"
+        formControlName="title"
+        class="w-full"
+      />
+    </div>
+
+    <div class="field">
+      <label for="goal">Goal</label>
+      <input
+        pInputText
+        id="goal"
+        type="text"
+        formControlName="goal"
+        class="w-full"
+      />
+    </div>
+
+    <div class="field">
+      <label for="section">Section</label>
+      <p-dropdown
+        id="section"
+        [options]="sections"
+        formControlName="section"
+        optionLabel="title"
+        [showClear]="true"
+        placeholder="Select a section"
+        class="w-full"
+      >
+      </p-dropdown>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="startDate">Start Date</label>
+        <input
+          type="date"
+          pInputText
+          id="startDate"
+          formControlName="startDate"
+          class="w-full date-input"
+        />
+      </div>
+
+      <div class="field">
+        <label for="endDate">End Date</label>
+        <input
+          type="date"
+          pInputText
+          id="endDate"
+          formControlName="endDate"
+          [min]="form.get('startDate')?.value | date : 'yyyy-MM-dd'"
+          class="w-full date-input"
+        />
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Cancel"
+      styleClass="p-button-text"
+      (onClick)="onClose.emit()"
+    >
+    </p-button>
+    <p-button label="Save" [disabled]="form.invalid" (onClick)="onSave.emit()">
+    </p-button>
+  </ng-template>
+</p-dialog>

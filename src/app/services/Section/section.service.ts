@@ -28,6 +28,10 @@ export class SectionService extends HttpModelService {
     return this.http.post<Section>(`${this.serverUrl}/project/sections/${projectUuid}`, {title,description});
   }
   
+  getSections(projectUuid: string): Observable<Section[]> {
+    return this.findAllSectionInProject(projectUuid);
+  }
+
   findAllSectionInProject(projectUuid:string):Observable<Section[]>{
     return this.http.get<Section[]>(`${this.serverUrl}/project/sections?projectId=${projectUuid}`)
   }

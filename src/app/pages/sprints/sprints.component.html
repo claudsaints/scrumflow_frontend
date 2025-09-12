@@ -1,7 +1,60 @@
-<div class="app-container">
-  <app-navigation></app-navigation>
-  <div class="home-container">
-    <app-bread-crumb />
-    <p>sprints works!</p>
+<div class="sprints-page">
+  <app-bread-crumb></app-bread-crumb>
+
+  <div class="content-grid">
+    <!-- Sprint List -->
+    <app-sprint-list
+      [sprints]="sprints"
+      [selectedSprint]="selectedSprint"
+      [loading]="loading"
+      [isAdmin]="isAdmin"
+      (onSelectSprint)="selectSprint($event)"
+      (onNewSprint)="showDialog()">
+    </app-sprint-list>
+
+    <!-- Sprint Details & Chart -->
+    <div class="sprint-details" *ngIf="selectedSprint">
+      <div class="details-header">
+        <div class="details-info">
+          <h2>{{selectedSprint.title}}</h2>
+          <p>{{selectedSprint.goal}}</p>
+          <small>
+            {{selectedSprint.start_date | date:'mediumDate'}} - 
+            {{selectedSprint.end_date | date:'mediumDate'}}
+          </small>
+        </div>
+        <div class="details-actions">
+          <p-button *ngIf="isAdmin"
+                   icon="pi pi-pencil"
+                   styleClass="p-button-text"
+                   (onClick)="showDialog(selectedSprint)"
+                   pTooltip="Edit Sprint">
+          </p-button>
+          <p-button icon="pi pi-chart-line"
+                   [styleClass]="showBurndown ? 'p-button-text p-button-success' : 'p-button-text'"
+                   (onClick)="toggleBurndown()"
+                   [pTooltip]="showBurndown ? 'Hide Burndown' : 'Show Burndown'">
+          </p-button>
+        </div>
+      </div>
+
+      <!-- Burndown Chart -->
+      <app-burndown-chart
+        *ngIf="showBurndown"
+        [sprint]="selectedSprint">
+      </app-burndown-chart>
+    </div>
   </div>
 </div>
+
+<!-- Sprint Form Dialog -->
+<app-sprint-form
+  [visible]="visible"
+  [sections]="sections"
+  [form]="sprintForm"
+  [selectedSprint]="selectedSprint"
+  (onClose)="visible = false"
+  (onSave)="saveSprint()">
+</app-sprint-form>
+
+<p-toast></p-toast>

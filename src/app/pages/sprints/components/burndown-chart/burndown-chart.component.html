@@ -1,0 +1,37 @@
+<div class="chart-container">
+  <div class="chart-header">
+    <h2>Sprint Burndown</h2>
+    <div class="chart-actions">
+      <p-button
+        icon="pi pi-download"
+        label="Download PNG"
+        (onClick)="downloadChart('png')"
+        styleClass="p-button-outlined p-button-secondary mr-2"
+      >
+      </p-button>
+      <p-button
+        icon="pi pi-file-excel"
+        label="Download XLSX"
+        (onClick)="downloadChart('xlsx')"
+        styleClass="p-button-outlined p-button-secondary"
+      >
+      </p-button>
+    </div>
+  </div>
+
+  <div *ngIf="hasData; else noData" class="chart-content">
+    <p-chart #chartRef type="line" [data]="chartData" [options]="chartOptions">
+    </p-chart>
+  </div>
+
+  <ng-template #noData>
+    <div class="no-data">
+      <i class="pi pi-chart-line"></i>
+      <p>Insufficient data for burndown chart</p>
+      <small
+        >Add story points and delivery dates to your cards to see the burndown
+        chart</small
+      >
+    </div>
+  </ng-template>
+</div>

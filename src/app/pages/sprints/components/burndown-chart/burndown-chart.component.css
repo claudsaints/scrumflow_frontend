@@ -1,0 +1,85 @@
+.chart-container {
+
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 600px;
+  height: 600px;
+  background: white;
+  border-radius: var(--radius);
+  padding: 1.25rem 2rem;
+  box-sizing: border-box;
+}
+
+.chart-content {
+
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  position: relative;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.chart-header h2 {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+
+
+.chart-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+:host ::ng-deep .p-chart {
+
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  display: block !important;
+}
+
+
+:host ::ng-deep .p-chart>div {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+::ng-deep canvas {
+  width: 100% !important;
+  height: 300px !important;
+  max-height: none !important;
+  display: block !important;
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-color-secondary);
+}
+
+.no-data i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.no-data p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}

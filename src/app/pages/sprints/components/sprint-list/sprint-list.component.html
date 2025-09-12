@@ -1,0 +1,38 @@
+<div class="sprints-list">
+  <div class="sprints-header">
+    <h2>Sprints</h2>
+    <p-button
+      *ngIf="isAdmin"
+      label="New Sprint"
+      icon="pi pi-plus"
+      (onClick)="onNewSprint.emit()"
+      styleClass="p-button-outlined">
+    </p-button>
+  </div>
+
+  <div class="sprints-grid" *ngIf="!loading; else loadingTpl">
+    <div
+      *ngFor="let sprint of sprints"
+      class="sprint-card"
+      [class.active]="sprint === selectedSprint"
+      (click)="onSelectSprint.emit(sprint)">
+      <div class="sprint-info">
+        <h3>{{sprint.title}}</h3>
+        <p>{{sprint.goal}}</p>
+      </div>
+      <div class="sprint-dates">
+        <small>
+          {{sprint.start_date | date:'shortDate'}} - {{sprint.end_date | date:'shortDate'}}
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingTpl>
+    <div class="sprints-grid">
+      <div class="sprint-card" *ngFor="let i of [1,2,3]">
+        <p-skeleton height="100px"></p-skeleton>
+      </div>
+    </div>
+  </ng-template>
+</div>

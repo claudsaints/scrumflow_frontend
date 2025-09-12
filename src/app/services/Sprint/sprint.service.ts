@@ -22,10 +22,14 @@ export class SprintService extends  HttpModelService{
     return this.http.get<Sprint[]>(`${this.serverUrl}?projectId=${projectId}`);
   }
   
-  updateSprintData(id: string): Observable<Sprint>{
-    return this.http.put<Sprint>(`${this.serverUrl}/${id}`, {});
+  updateSprintData(id: string, data: any): Observable<Sprint>{
+    return this.http.put<Sprint>(`${this.serverUrl}/${id}`, data);
   }
   
+  createSprint(projectId: string, sectionId: string, data: any): Observable<Sprint> {
+    return this.http.post<Sprint>(`${this.serverUrl}?projectId=${projectId}&sectionId=${sectionId}`, data);
+  }
+
   deleteSprint(id: string): Observable<Sprint>{
     return this.http.delete<Sprint>(`${this.serverUrl}/${id}`);
   }
